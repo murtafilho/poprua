@@ -56,6 +56,7 @@ class FotoController extends AppBaseController
     public function store(Request $request)
     {
         $input = $request->all();
+        dd($input);
 
         if($request->hasFile('url')){
 
