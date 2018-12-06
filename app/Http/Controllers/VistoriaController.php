@@ -50,8 +50,7 @@ class VistoriaController extends AppBaseController
 	    $dt = $input['data_abordagem'];
         $input['data_abordagem'] = $this->dtus($dt);
         $vistoria = $this->vistoriaRepository->create($input);
-        $ponto_id = $vistoria->ponto_id;
-        return redirect(route('pontos.show',$ponto_id));
+        return redirect(route('vistorias.index'));
     }
 
     public function show($id)

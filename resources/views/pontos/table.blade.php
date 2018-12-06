@@ -2,6 +2,7 @@
     <thead>
     <th></th>
     <th>Últ.Vist</th>
+    <th>Tipo</th>
         <th>Logradouro</th>
     <th>Número</th>
     <th>Bairro</th>
@@ -16,6 +17,7 @@
         <tr>
             <td><a href="{!! route('pontos.show', [$ponto->id]) !!}" class='btn btn-default'><i class="glyphicon glyphicon-eye-open"></i>  Vistorias [{{$ponto->contador}}]</a></td>
             <td>{!!  \Carbon\Carbon::parse($ponto->data_a)->format('d-m-Y') !!}</td>
+            <td>{!! $ponto->tipo !!}</td>
             <td>{!! $ponto->logradouro !!}</td>
             <td>{!! $ponto->numero!!}</td>
             <td>{!! $ponto->bairro !!}</td>

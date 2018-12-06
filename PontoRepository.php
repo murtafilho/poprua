@@ -56,11 +56,11 @@ class PontoRepository extends BaseRepository
 		}
 	
 
-		return  $pontos->paginate(10);
+		return  $pontos->paginate(20);
 	}
 
 	public function listar(){
-		$pontos = DB::table('qry_pontos')->paginate(10);
+		$pontos = DB::table('qry_pontos')->paginate(20);
 		return $pontos;
 	}
 

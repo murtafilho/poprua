@@ -62,13 +62,13 @@ class VistoriaRepository extends BaseRepository
 	    if($numero){
 		    $vistorias = $vistorias ->where('numero','=',$request->numero);
 	    }
-	    $vistorias = $vistorias->paginate(20);
+	    $vistorias = $vistorias->paginate(10);
 	    return $vistorias;
     }
 
     public function listarById($id){
     	$vistorias = DB::table('qry_vistorias')
-    	->where('ponto_id','=',$id)->paginate(20);
+    	->where('ponto_id','=',$id)->paginate(10);
     	return $vistorias;
     }
 

@@ -72,7 +72,7 @@ class PontoController extends AppBaseController
 		$input = $request->all();
 		$ponto = $this->pontoRepository->create($input);
 		Flash::success('Ponto saved successfully.');
-		return redirect(route('pontos.show',$ponto->id));
+		return redirect(route('pontos.index'));
 	}
 
 

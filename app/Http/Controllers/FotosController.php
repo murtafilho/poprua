@@ -8,7 +8,7 @@ class FotosController extends Controller
     public function index()
     {
         $Fotos = Foto::all();
-        return view('/fotos', compact(['Fotos']));
+        return view('fotos.index');
     }
     public function store(Request $request)
     {
