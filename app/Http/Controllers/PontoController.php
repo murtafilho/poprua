@@ -145,19 +145,15 @@ class PontoController extends AppBaseController
 	public function autoComplete(Request $request)
 	{
 		$q    = $request->q;
-		$data = DB::table('ender')
+		$data = DB::table('qry_ponto_concat')
 			->take(30)
-			->join('pontos', 'pontos.endereco_id', '=', 'ender.id')
-			->select('pontos.id', 'pontos.numero', 'ender.logradouro', 'ender.bairro', 'ender.regional')
-			->where('logradouro', 'LIKE', $q . '%')
-			->orderBy('logradouro')
-			->orderBy('regional')
-			->orderBy('bairro')
+			->select('id', 'ponto_concat')
+			->where('ponto_concat', 'LIKE', '%'. $q . '%')
 			->get();
 
 		foreach ($data as $item)
 		{
-			$results[] = ['text' => $item->logradouro . ' - ' . $item->numero . ' - ' . $item->bairro . ' - ' . $item->regional, 'id' => $item->id];
+			$results[] = ['text' => $item->ponto_concat, 'id' => $item->id];
 		}
 		if (count($results) > 0)
 		{

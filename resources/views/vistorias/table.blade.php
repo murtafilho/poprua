@@ -30,7 +30,7 @@
             </td>
             <td>{!! $vistoria->id !!}</td>
             <td>{!!  \Carbon\Carbon::parse($vistoria->data_abordagem)->format('d-m-Y') !!}</td>
-            <td>{!! $vistoria->logradouro.' '.$vistoria->numero !!}</td>
+            <td>{!! $vistoria->logradouro.' '.$vistoria->numero.' ('.$vistoria->tipo.') ' !!}</td>
             <td>{!! $vistoria->resultado_acao !!}</td>
             <td>{!! $vistoria->nomes_pessoas !!}</td>
             <td>{!! $vistoria->quantidade_pessoas !!}</td>
