@@ -34,4 +34,11 @@ Route::get('vistoria_detail/{ponto_id}','VistoriaController@createDetail')->name
 
 Route::get('ponto/{ponto_id}','PontoController@index2')->name('ponto');
 
-Route::resource('fotos', 'FotoController');
+
+Route::get('fotos', 'FotoController@index')->name('fotos');
+
+Route::post('fotos/store', 'FotoController@store')->name('fotos.store');
+
+Route::delete('fotos/{id}', 'FotoController@destroy')->name('fotos.destroy');
+
+Route::get('fotos/download/{id}', 'FotoController@download')->name('fotos.download');

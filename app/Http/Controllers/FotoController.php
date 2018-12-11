@@ -1,160 +1,38 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Http\Requests\CreateFotoRequest;
-use App\Http\Requests\UpdateFotoRequest;
-use App\Repositories\FotoRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Laracasts\Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
-
-class FotoController extends AppBaseController
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+class FotoController extends Controller
 {
-    /** @var  FotoRepository */
-    private $fotoRepository;
-
-    public function __construct(FotoRepository $fotoRepo)
+    public function index()
     {
-        $this->fotoRepository = $fotoRepo;
+        $fotos = DB::table('fotos')->orderBy('id','DESC')->get();
+        return view('fotos.index',compact('fotos'));
     }
-
-    /**
-     * Display a listing of the Foto.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request)
-    {
-        $this->fotoRepository->pushCriteria(new RequestCriteria($request));
-        $fotos = $this->fotoRepository->all();
-
-        return view('fotos.index')
-            ->with('fotos', $fotos);
-    }
-
-    /**
-     * Show the form for creating a new Foto.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('fotos.create');
-    }
-
-    /**
-     * Store a newly created Foto in storage.
-     *
-     * @param CreateFotoRequest $request
-     *
-     * @return Response
-     */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        if($request->hasFile('url')){
-
-        	$file = $request->file('url');
-        	$url = $file->getClientOriginalName().'/'.$file->getClientOriginalExtension();
-        	$request->file('url')->move(public_path('./img/poprua/'),$url);
-        }
-
-        $foto = $this->fotoRepository->create($input);
-
-        return redirect(route('fotos.index'));
+        $path = $request->file('imagem')->store('imagens','public');
+        $foto = new Foto();
+        $foto->vistoria_id = $request->vistoria_id;
+        $foto->imagem = $path; 
+        $foto->save();
+        return redirect('fotos.store');
     }
-
-    /**
-     * Display the specified Foto.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $foto = $this->fotoRepository->findWithoutFail($id);
-
-        if (empty($foto)) {
-            Flash::error('Foto not found');
-
-            return redirect(route('fotos.index'));
+    public function destroy($id) {
+        $foto = Foto::find($id);
+        if (isset($foto)) {
+            Storage::disk('public')->delete($foto->imagem); 
+            $foto->delete();
         }
-
-        return view('fotos.show')->with('foto', $foto);
+        return redirect('/');
     }
-
-    /**
-     * Show the form for editing the specified Foto.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $foto = $this->fotoRepository->findWithoutFail($id);
-
-        if (empty($foto)) {
-            Flash::error('Foto not found');
-
-            return redirect(route('fotos.index'));
+    public function download($id) {
+        $foto = Foto::find($id);
+        if (isset($foto)) {
+            $path =  Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($foto->imagem);
+            return response()->download($path);
         }
-
-        return view('fotos.edit')->with('foto', $foto);
-    }
-
-    /**
-     * Update the specified Foto in storage.
-     *
-     * @param  int              $id
-     * @param UpdateFotoRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateFotoRequest $request)
-    {
-        $foto = $this->fotoRepository->findWithoutFail($id);
-
-        if (empty($foto)) {
-            Flash::error('Foto not found');
-
-            return redirect(route('fotos.index'));
-        }
-
-        $foto = $this->fotoRepository->update($request->all(), $id);
-
-        Flash::success('Foto updated successfully.');
-
-        return redirect(route('fotos.index'));
-    }
-
-    /**
-     * Remove the specified Foto from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $foto = $this->fotoRepository->findWithoutFail($id);
-
-        if (empty($foto)) {
-            Flash::error('Foto not found');
-
-            return redirect(route('fotos.index'));
-        }
-
-        $this->fotoRepository->delete($id);
-
-        Flash::success('Foto deleted successfully.');
-
-        return redirect(route('fotos.index'));
+        return redirect('/');
     }
 }
