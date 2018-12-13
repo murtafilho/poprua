@@ -12,7 +12,7 @@ class FotoController extends Controller
     }
     public function store(Request $request)
     {
-        $path = $request->file('imagem')->store('imagens','public');
+        $path = $request->file('url')->store('imagens','public');
         $foto = new Foto();
         $foto->vistoria_id = $request->vistoria_id;
         $foto->imagem = $path; 

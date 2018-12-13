@@ -1,6 +1,6 @@
 <div class="form-group col-sm-6">
-    {!! Form::label('endereco_id', 'Endereçamento:') !!}
-    <select class="form-control" name="endereco_id" id="endereco_id">
+    {!! Form::label('endereco_id', 'Endereçamento*') !!}
+    <select class="form-control" name="endereco_id" id="endereco_id" required>
         @if(isset($ponto))
             <option value="{{$ponto->endereco->id}}">{{$ponto->endereco->logradouro.' - '.$ponto->endereco->bairro}}</option>
         @endif
@@ -8,13 +8,13 @@
 </div>
 
 <div class="form-group col-sm-6">
-    {!! Form::label('numero', 'Numero:') !!}
-    {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+    {!! Form::label('numero', 'Numero*') !!}
+    {!! Form::text('numero', null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 <!-- Caracteristica Abrigo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('caracteristica_abrigo', 'Caracteristica Abrigo:') !!}
+    {!! Form::label('caracteristica_abrigo', 'Caracteristica Abrigo*') !!}
     {!! Form::select('caracteristica_abrigo',
      [
      'Na propriedade pública'=>'Na propriedade pública',
@@ -30,7 +30,7 @@
      'Passeio em frente a propriedade privada'=>'Passeio em frente a propriedade privada',
      'Marquise de propriedade residencial'=>'Marquise de propriedade residencial'
      ],
-     null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+     null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Complemento Field -->

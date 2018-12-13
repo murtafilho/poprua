@@ -1,10 +1,10 @@
 <!-- Data Abordagem Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('data_abordagem', 'Data:') !!}
-    {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker']) !!}
+    {!! Form::label('data_abordagem', 'Data*') !!}
+    {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker','required'=>'required']) !!}
 </div>
 
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-3" required>
     {!! Form::label('ponto_id', 'Ponto:') !!}
         <select class="form-control" name="ponto_id" id="ponto_id">
             @if(isset($ponto))
@@ -14,24 +14,24 @@
 </div>
 
 <div class="form-group col-sm-3">
-    {!! Form::label('tipo_abordagem', 'Tipo Abordagem:') !!}
+    {!! Form::label('tipo_abordagem', 'Tipo Abordagem*') !!}
     {!! Form::select('tipo_abordagem',
      ['Orientativa'=>'Orientativa',
       'Fiscal'=>'Fiscal',
       'Monitoramento'=>'Monitoramento'
      ],
-     null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+     null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Resultado Acao Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('resultado_acao', 'Resultado Acao:') !!}
+    {!! Form::label('resultado_acao', 'Resultado Acao*') !!}
     {!! Form::select('resultado_acao',
     ['Fenômeno persiste'=>'Fenômeno persiste',
     'Impactado parcialmente' => 'Impactado parcialmente',
     'Não há mais o fenômeno'=>'Não há mais o fenômeno',
     'Necessária nova abordagem'=>'Necessária nova abordagem'],null
-    , ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    , ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Nomes Pessoas Field -->
@@ -50,89 +50,89 @@
 
 <!-- Casal Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('casal', 'Casal') !!}
-    {!! Form::select('casal',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('casal', 'Casal*') !!}
+    {!! Form::select('casal',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Num Reduzido Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('num_reduzido', 'Num. reduzido') !!}
-    {!! Form::select('num_reduzido',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('num_reduzido', 'Num. reduzido*') !!}
+    {!! Form::select('num_reduzido',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Catador Reciclados Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('catador_reciclados', 'Catador reciclados') !!}
-    {!! Form::select('catador_reciclados',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('catador_reciclados', 'Catador reciclados*') !!}
+    {!! Form::select('catador_reciclados',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Resistencia Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('resistencia', 'Resistência') !!}
-    {!! Form::select('resistencia',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('resistencia', 'Resistência*') !!}
+    {!! Form::select('resistencia',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Fixacao Antiga Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('fixacao_antiga', 'Fixação antiga') !!}
-    {!! Form::select('fixacao_antiga',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('fixacao_antiga', 'Fixação antiga*') !!}
+    {!! Form::select('fixacao_antiga',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Estrutura Abrigo Provisorio Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('estrutura_abrigo_provisorio', 'Estrutura abrigo provisório:') !!}
-    {!! Form::select('estrutura_abrigo_provisorio',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('estrutura_abrigo_provisorio', 'Estrutura abrigo provisório*') !!}
+    {!! Form::select('estrutura_abrigo_provisorio',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 
 </div>
 
 <!-- Excesso Objetos Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('excesso_objetos', 'Excesso objetos') !!}
-    {!! Form::select('excesso_objetos',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('excesso_objetos', 'Excesso objetos*') !!}
+    {!! Form::select('excesso_objetos',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Trafico Ilicitos Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('trafico_ilicitos', 'Tráfico ilícitos') !!}
-    {!! Form::select('trafico_ilicitos',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('trafico_ilicitos', 'Tráfico ilícitos*') !!}
+    {!! Form::select('trafico_ilicitos',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Menores Idosos Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('menores_idosos', 'Menores Idosos') !!}
-    {!! Form::select('menores_idosos',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('menores_idosos', 'Menores Idosos*') !!}
+    {!! Form::select('menores_idosos',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Deficiente Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('deficiente', 'Deficiente') !!}
-    {!! Form::select('deficiente',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('deficiente', 'Deficiente*') !!}
+    {!! Form::select('deficiente',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Agrupamento Quimico Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('agrupamento_quimico', 'Agrupamento Quimico') !!}
-    {!! Form::select('agrupamento_quimico',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('agrupamento_quimico', 'Agrupamento Quimico*') !!}
+    {!! Form::select('agrupamento_quimico',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Saude Mental Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('saude_mental', 'Saude Mental') !!}
-    {!! Form::select('saude_mental',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::label('saude_mental', 'Saude Mental*') !!}
+    {!! Form::select('saude_mental',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 
 </div>
 
 <!-- Animais Field -->
 <div class="form-group col-sm-3">
     {!! Form::label('animais', 'Animais') !!}
-    {!! Form::select('animais',[''=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar']) !!}
+    {!! Form::select('animais',['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <div class="row"></div>
@@ -152,7 +152,7 @@
                         'Defesa Civil'=>'Defesa Civil',
                         'SUDECAP'=>'SUDECAP',
                         'Demais Secretarias'=>'Demais Secretarias'
-    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...','required'=>'required']) !!}
 </div>
 
 <!-- E2 Field -->
@@ -160,7 +160,6 @@
     {!! Form::label('e2', 'Encaminhamento 2') !!}
     {!! Form::select('e2', [
     'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Nenhum'=>'Nenhum',
     'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
         'Diversas Secretarias'=>'Diversas Secretarias',
             'Conselho Tutelar'=>'Conselho Tutelar',
@@ -178,7 +177,6 @@
     {!! Form::label('e3', 'Encaminhamento 3') !!}
     {!! Form::select('e3',[
     'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Nenhum'=>'Nenhum',
     'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
         'Diversas Secretarias'=>'Diversas Secretarias',
             'Conselho Tutelar'=>'Conselho Tutelar',
@@ -196,7 +194,6 @@
     {!! Form::label('e4', 'Encaminhamento 4') !!}
     {!! Form::select('e4',[
     'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Nenhum'=>'Nenhum',
     'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
         'Diversas Secretarias'=>'Diversas Secretarias',
             'Conselho Tutelar'=>'Conselho Tutelar',
@@ -223,7 +220,7 @@
 
 <!-- Tipo Abrigo Desmontado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tipo_abrigo_desmontado', 'Tipo Abrigo Desmontado:') !!}
+    {!! Form::label('tipo_abrigo_desmontado', 'Tipo Abrigo Desmontado') !!}
     {!! Form::select('tipo_abrigo_desmontado',[
     'Abrigo de lona'=>'Abrigo de lona','Abrigo de madeirite'=>'Abrigo de madeirite','Barraca de camping'=>'Barraca de camping'
     ], null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
@@ -238,8 +235,8 @@
 
 <!-- Movimento Migratorio Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('movimento_migratorio', 'Movimento Migratorio:') !!}
-    {!! Form::text('movimento_migratorio', null, ['class' => 'form-control']) !!}
+    {!! Form::label('movimento_migratorio', 'Movimento Migratorio') !!}
+    {!! Form::text('movimento_migratorio', null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 <!-- Observacao Field -->

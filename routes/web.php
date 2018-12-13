@@ -42,3 +42,5 @@ Route::post('fotos/store', 'FotoController@store')->name('fotos.store');
 Route::delete('fotos/{id}', 'FotoController@destroy')->name('fotos.destroy');
 
 Route::get('fotos/download/{id}', 'FotoController@download')->name('fotos.download');
+
+Route::resource('categories', 'CategoryController');

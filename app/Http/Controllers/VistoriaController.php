@@ -74,10 +74,11 @@ class VistoriaController extends AppBaseController
         $ponto = $this->ponto->find($ponto_id);
 
         if (empty($vistoria)) {
-            Flash::error('Vistoria not found');
+            Flash::error('Vistoria não encontrada');
 
             return redirect(route('vistorias.index'));
         }
+        
         return view('vistorias.edit',compact('vistoria','ponto'));
     }
 
@@ -96,7 +97,7 @@ class VistoriaController extends AppBaseController
 
         $vistoria = $this->vistoriaRepository->update($request->all(), $id);
 
-        Flash::success('Vistoria updated successfully.');
+        Flash::success('Vistoria atualizada com sucesso"');
 
         return redirect(route('vistorias.index'));
     }
@@ -106,14 +107,14 @@ class VistoriaController extends AppBaseController
         $vistoria = $this->vistoriaRepository->findWithoutFail($id);
 
         if (empty($vistoria)) {
-            Flash::error('Vistoria not found');
+            Flash::error('Vistoria não encontrada');
 
             return redirect(route('vistorias.index'));
         }
 
         $this->vistoriaRepository->delete($id);
 
-        Flash::success('Vistoria deleted successfully.');
+        Flash::success('Vistoria excluída com sucesso.');
 
         return redirect(route('vistorias.index'));
     }

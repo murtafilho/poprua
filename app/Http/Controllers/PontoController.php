@@ -71,7 +71,7 @@ class PontoController extends AppBaseController
 	{
 		$input = $request->all();
 		$ponto = $this->pontoRepository->create($input);
-		Flash::success('Ponto saved successfully.');
+		Flash::success('Ponto adicionado com sucesso.');
 		return redirect(route('pontos.index'));
 	}
 
@@ -82,7 +82,7 @@ class PontoController extends AppBaseController
 		$vistorias = $this->vistoriaRepository->listarById($id);
 		if (empty($ponto))
 		{
-			Flash::error('Ponto not found');
+			Flash::error('Ponto não cadastrado!');
 
 			return redirect(route('pontos.index'));
 		}
@@ -96,7 +96,7 @@ class PontoController extends AppBaseController
 
 		if (empty($ponto))
 		{
-			Flash::error('Ponto not found');
+			Flash::error('Ponto não cadastrado');
 
 			return redirect(route('pontos.index'));
 		}
@@ -111,14 +111,14 @@ class PontoController extends AppBaseController
 
 		if (empty($ponto))
 		{
-			Flash::error('Ponto not found');
+			Flash::error('Ponto não cadastrado');
 
 			return redirect(route('pontos.index'));
 		}
 
 		$ponto = $this->pontoRepository->update($request->all(), $id);
 
-		Flash::success('Ponto updated successfully.');
+		Flash::success('Ponto atualizado com sucesso!');
 
 		return redirect(route('pontos.index'));
 	}
@@ -130,14 +130,14 @@ class PontoController extends AppBaseController
 
 		if (empty($ponto))
 		{
-			Flash::error('Ponto not found');
+			Flash::error('Ponto não cadastrado...');
 
 			return redirect(route('pontos.index'));
 		}
 
 		$this->pontoRepository->delete($id);
 
-		Flash::success('Ponto deleted successfully.');
+		Flash::success('Ponto excluído!');
 
 		return redirect(route('pontos.index'));
 	}
