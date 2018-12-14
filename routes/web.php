@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('enderecos', 'EnderecoController');
 
@@ -44,3 +44,5 @@ Route::delete('fotos/{id}', 'FotoController@destroy')->name('fotos.destroy');
 Route::get('fotos/download/{id}', 'FotoController@download')->name('fotos.download');
 
 Route::resource('categories', 'CategoryController');
+
+Route::get('saneamento','saneamentoController@executar');

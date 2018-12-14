@@ -1,3 +1,11 @@
+@section('css')
+<style>
+.hover{
+        background-color:#3C8DBC;
+        color:white
+    }
+</style>
+@endsection
 <table class="table table-responsive" id="pontos-table">
     <thead>
     <th></th>
@@ -29,7 +37,7 @@
                 {!! Form::open(['route' => ['pontos.destroy', $ponto->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('pontos.edit', [$ponto->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Atenção!!! Excluindo o ponto, todas as vistorias vinculadas serão excluídas. Você tem certeza?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
@@ -37,3 +45,13 @@
     @endforeach
     </tbody>
 </table>
+@section('scripts')
+<script>
+$('tbody tr').hover(function() {
+    $(this).addClass('hover');
+}, function() {
+    $(this).removeClass('hover');
+});
+</script>
+    
+@endsection

@@ -15,6 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $num_pontos = \Illuminate\Support\Facades\DB::table('pontos')->count();
+        $num_vistorias = \Illuminate\Support\Facades\DB::table('vistorias')->count();
+        return view('home',compact('num_pontos','num_vistorias'));
     }
 }
