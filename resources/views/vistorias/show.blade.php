@@ -11,6 +11,7 @@
             <div class="box-body">
                 <div class="row"  style="padding-left: 20px">
                     @include('vistorias.show_fields')
+
                     <a href="{!! route('vistorias.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>

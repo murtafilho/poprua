@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\DB;
 class saneamentoController extends Controller
 {
     public function executar(){
-        $up = DB::table('vistorias')
-        ->where('casal', null)
-        ->orWhere('casal','')
-        ->orWhere('casal','Não')
-        ->update(['casal' => 0]);
-        echo $up;
-        echo '<br>';
+ /*
+            $up = DB::table('vistorias')
+                ->where('casal', null)
+                ->orWhere('casal','')
+                ->orWhere('casal','Não')
+                ->update(['casal' => 0]);
+            echo $up;
+            echo '<br>';
+
+
 
         $up = DB::table('vistorias')
         ->where('casal', 'Sim')
@@ -23,7 +26,7 @@ class saneamentoController extends Controller
         ->update(['casal' => 1]);
         echo $up;
         echo '<br>';
-
+*/
         $up = DB::table('vistorias')
         ->where('num_reduzido', null)
         ->orWhere('num_reduzido','')
@@ -101,6 +104,23 @@ class saneamentoController extends Controller
         ->update(['animais' => 0]);
         echo $up;
         echo '<br>';
+
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN casal tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN num_reduzido tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN catador_reciclados tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN resistencia tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN fixacao_antiga tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN estrutura_abrigo_provisorio tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN exesso_objetos tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN trafico_ilicitos(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN menores_idosos tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN deficiente tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN agrupamento_quimico(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN saude_mental tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN animais tinyint(1) NULL DEFAULT 0;');
+
+
+
 
         
     }

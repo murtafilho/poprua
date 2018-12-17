@@ -1,19 +1,20 @@
 <!-- Data Abordagem Field -->
-<div class="form-group col-sm-2">
+<div class="form-group col-sm-1">
     {!! Form::label('data_abordagem', 'Data*') !!}
     {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker','required'=>'required']) !!}
 </div>
 
 <div class="form-group col-sm-2" required>
-    {!! Form::label('ponto_id', 'Ponto:') !!}
-        <select class="form-control" name="ponto_id" id="ponto_id">
-            @if(isset($ponto))
-                <option value="{{$ponto->id}}">{{$ponto->endereco->logradouro.' '.$ponto->numero.' - '.$ponto->endereco->bairro}}</option>
-            @endif
-        </select>
+    {!! Form::label('ponto_id', 'Ponto*') !!}
+    <select class="form-control" name="ponto_id" id="ponto_id">
+        @if(isset($ponto))
+            <option value="{{$ponto->id}}">{{$ponto->endereco->logradouro.' '.$ponto->numero.' - '.$ponto->endereco->bairro}}</option>
+        @endif
+    </select>
 </div>
 
 <div class="form-group col-sm-2">
+
     {!! Form::label('tipo_abordagem', 'Tipo Abordagem*') !!}
     {!! Form::select('tipo_abordagem',
      ['Orientativa'=>'Orientativa',
@@ -57,8 +58,8 @@
 
 <!-- Num Reduzido Field -->
 <div class="form-group col-sm-2">
-    {{ Form::hidden('casal', false) }}
-    {{ Form::checkbox('casal', true) }}
+    {{ Form::hidden('num_reduzido', false) }}
+    {{ Form::checkbox('num_reduzido', true) }}
     {!! Form::label('num_reduzido', 'Num reduzido') !!}
 </div>
 
@@ -160,7 +161,7 @@
                         'Defesa Civil'=>'Defesa Civil',
                         'SUDECAP'=>'SUDECAP',
                         'Demais Secretarias'=>'Demais Secretarias'
-    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...','required'=>'required']) !!}
+    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- E2 Field -->
@@ -244,7 +245,7 @@
 <!-- Movimento Migratorio Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('movimento_migratorio', 'Movimento Migratorio') !!}
-    {!! Form::text('movimento_migratorio', null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::text('movimento_migratorio', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Observacao Field -->

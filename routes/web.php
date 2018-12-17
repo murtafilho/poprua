@@ -35,14 +35,14 @@ Route::get('vistoria_detail/{ponto_id}','VistoriaController@createDetail')->name
 Route::get('ponto/{ponto_id}','PontoController@index2')->name('ponto');
 
 
-Route::get('fotos', 'FotoController@index')->name('fotos');
-
-Route::post('fotos/store', 'FotoController@store')->name('fotos.store');
-
+Route::get('fotos/{vistoria_id}', 'FotoController@index')->name('fotos');
+Route::post('fotos/', 'FotoController@store')->name('fotos.store');
 Route::delete('fotos/{id}', 'FotoController@destroy')->name('fotos.destroy');
 
-Route::get('fotos/download/{id}', 'FotoController@download')->name('fotos.download');
 
 Route::resource('categories', 'CategoryController');
 
 Route::get('saneamento','saneamentoController@executar');
+
+Route::get('migrar/{id}','pontoController@migrar')->name('pontos.migrar');
+Route::get('processar_migracao','pontoController@processar_migracao')->name('processar.migracao');

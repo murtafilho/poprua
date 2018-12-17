@@ -73,13 +73,15 @@ class VistoriaController extends AppBaseController
         $ponto_id = $vistoria->ponto_id;
         $ponto = $this->ponto->find($ponto_id);
 
+
+
         if (empty($vistoria)) {
             Flash::error('Vistoria não encontrada');
 
             return redirect(route('vistorias.index'));
         }
         
-        return view('vistorias.edit',compact('vistoria','ponto'));
+        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat'));
     }
 
 

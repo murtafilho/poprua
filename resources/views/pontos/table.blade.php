@@ -9,6 +9,8 @@
 <table class="table table-responsive" id="pontos-table">
     <thead>
     <th></th>
+    <th></th>
+    <th>#ID</th>
     <th>Últ.Vist</th>
     <th>Tipo</th>
         <th>Logradouro</th>
@@ -23,7 +25,9 @@
     <tbody>
     @foreach($pontos as $ponto)
         <tr>
-            <td><a href="{!! route('pontos.show', [$ponto->id]) !!}" class='btn btn-default'><i class="glyphicon glyphicon-eye-open"></i>  Vistorias [{{$ponto->contador}}]</a></td>
+            <td><a href="{!! route('pontos.show', [$ponto->id]) !!}" class='btn btn-sm btn-default'><i class="glyphicon glyphicon-eye-open"></i>  Vistorias [{{$ponto->contador}}]</a></td>
+            <td><a href="{!! route('pontos.migrar', [$ponto->id]) !!}" class='btn btn-sm btn-default'><i class="glyphicon glyphicon-eye-open"></i>  Migrar </a></td>
+            <td>{!! $ponto->id !!}</td>
             <td>{!!  \Carbon\Carbon::parse($ponto->data_a)->format('d-m-Y') !!}</td>
             <td>{!! $ponto->tipo !!}</td>
             <td>{!! $ponto->logradouro !!}</td>
@@ -45,6 +49,7 @@
     @endforeach
     </tbody>
 </table>
+{!! $pontos->appends(Request::except('page'))->links() !!}
 @section('scripts')
 <script>
 $('tbody tr').hover(function() {

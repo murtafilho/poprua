@@ -18,7 +18,7 @@
                     @include('vistorias._search')
                     @include('vistorias.table')
             </div>
-            {!! $vistorias->appends(Request::except('page'))->links() !!}
+
         </div>
     </div>
 @endsection

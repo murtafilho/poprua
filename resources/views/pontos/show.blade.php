@@ -18,6 +18,7 @@
                     @if(isset($vistorias))
                     @include('vistorias.table')
                     @endif
+                    <br>
                     <a href="{!! route('pontos.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>

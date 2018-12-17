@@ -24,8 +24,6 @@ class Foto extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $dates = ['deleted_at'];
-
 
     public $fillable = [
 

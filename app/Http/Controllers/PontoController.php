@@ -142,28 +142,50 @@ class PontoController extends AppBaseController
 		return redirect(route('pontos.index'));
 	}
 
-	public function autoComplete(Request $request)
-	{
-		$q    = $request->q;
-		$data = DB::table('qry_ponto_concat')
-			->take(30)
-			->select('id', 'ponto_concat')
-			->where('ponto_concat', 'LIKE', '%'. $q . '%')
-			->get();
+	public function migrar($id){
+	    $vistorias = DB::table('qry_vistorias')->where('ponto_id','=',$id)->get();
+        $keys = $vistorias->pluck('id')->toArray();
 
-		foreach ($data as $item)
-		{
-			$results[] = ['text' => $item->ponto_concat, 'id' => $item->id];
-		}
-		if (count($results) > 0)
-		{
-			return response()->json($results);
-		}
-		else
-		{
-			return null;
-		}
+        session(['vistorias_ids' => $keys]);
+        session(['ponto_id' => $id]);
 
-	}
+	    return view('pontos.migrar',compact('vistorias','keys'));
+
+    }
+
+    public function processar_migracao(Request $request){
+        $vistorias_ids = session('vistorias_ids');
+        $ponto_id = session('ponto_id');
+        foreach ($vistorias_ids as $vistoria_id){
+            DB::update("update vistorias set ponto_id = $request->ponto_id where id = $vistoria_id ");
+        }
+        DB::delete("delete from pontos where id = $ponto_id");
+        Flash::success('Vistorias migradas com sucesso para o ponto #<a href= '.route('pontos.show',['id'=>$request->ponto_id]).'>'.$request->ponto_id.'</a>');
+
+        return redirect()->route('pontos.index');
+    }
+
+    public function autoComplete(Request $request)
+    {
+        $q    = $request->q;
+        $data = DB::table('qry_ponto_concat')
+            ->take(30)
+            ->select('id', 'ponto_concat')
+            ->where('ponto_concat', 'LIKE', '%'. $q . '%')
+            ->get();
+        foreach ($data as $item)
+        {
+            $results[] = ['text' => $item->ponto_concat, 'id' => $item->id];
+        }
+        if (count($results) > 0)
+        {
+            return response()->json($results);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 
 }
