@@ -17,6 +17,7 @@
             <div class="box-body">
                     @include('vistorias._search')
                     @include('vistorias.table')
+                    {!! $vistorias->appends(Request::except('page'))->links() !!}
             </div>
 
         </div>

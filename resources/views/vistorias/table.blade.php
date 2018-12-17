@@ -53,7 +53,7 @@
     @endforeach
     </tbody>
 </table>
-{!! $vistorias->appends(Request::except('page'))->links() !!}
+
 @section('scripts')
 <script>
 $('tbody tr').hover(function() {

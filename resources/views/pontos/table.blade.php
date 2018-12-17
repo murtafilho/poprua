@@ -49,7 +49,7 @@
     @endforeach
     </tbody>
 </table>
-{!! $pontos->appends(Request::except('page'))->links() !!}
+
 @section('scripts')
 <script>
 $('tbody tr').hover(function() {

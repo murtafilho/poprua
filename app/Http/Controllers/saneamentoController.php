@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 class saneamentoController extends Controller
 {
     public function executar(){
- /*
-            $up = DB::table('vistorias')
+
+    /*        $up = DB::table('vistorias')
                 ->where('casal', null)
                 ->orWhere('casal','')
                 ->orWhere('casal','Não')
@@ -26,7 +26,7 @@ class saneamentoController extends Controller
         ->update(['casal' => 1]);
         echo $up;
         echo '<br>';
-*/
+
         $up = DB::table('vistorias')
         ->where('num_reduzido', null)
         ->orWhere('num_reduzido','')
@@ -40,7 +40,7 @@ class saneamentoController extends Controller
         ->update(['catador_reciclados' => 0]);
         echo $up;
         echo '<br>';
-
+*/
         $up = DB::table('vistorias')
         ->where('resistencia', null)
         ->update(['resistencia' => 0]);
@@ -111,7 +111,7 @@ class saneamentoController extends Controller
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN resistencia tinyint(1) NULL DEFAULT 0;');
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN fixacao_antiga tinyint(1) NULL DEFAULT 0;');
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN estrutura_abrigo_provisorio tinyint(1) NULL DEFAULT 0;');
-        DB::statement('ALTER TABLE vistorias MODIFY COLUMN exesso_objetos tinyint(1) NULL DEFAULT 0;');
+        DB::statement('ALTER TABLE vistorias MODIFY COLUMN excesso_objetos tinyint(1) NULL DEFAULT 0;');
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN trafico_ilicitos(1) NULL DEFAULT 0;');
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN menores_idosos tinyint(1) NULL DEFAULT 0;');
         DB::statement('ALTER TABLE vistorias MODIFY COLUMN deficiente tinyint(1) NULL DEFAULT 0;');
