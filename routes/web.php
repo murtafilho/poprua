@@ -44,5 +44,5 @@ Route::resource('categories', 'CategoryController');
 
 Route::get('saneamento','saneamentoController@executar');
 
-Route::get('migrar/{id}','pontoController@migrar')->name('pontos.migrar');
-Route::get('processar_migracao','pontoController@processar_migracao')->name('processar.migracao');
+Route::get('migrar/{id}','PontoController@migrar')->name('pontos.migrar');
+Route::get('processar_migracao','PontoController@processar_migracao')->name('processar.migracao');

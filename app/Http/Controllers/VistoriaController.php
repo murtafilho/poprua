@@ -18,11 +18,17 @@ class VistoriaController extends AppBaseController
 {
     private $vistoriaRepository;
     private $ponto;
+    private $resultados_acoes;
+    private $tipo_abordagem;
+    private $encaminhamentos;
 
 	public function __construct(VistoriaRepository $vistoriaRepo, PontoRepository $pontoRepository)
     {
         $this->vistoriaRepository = $vistoriaRepo;
         $this->ponto = $pontoRepository;
+        $this->resultados_acoes = DB::table('resultados_acoes')->pluck('resultado','id');
+        $this->tipo_abordagem = DB::table('tipo_abordagem')->pluck('tipo','id');
+        $this->encaminhamentos = DB::table('encaminhamentos')->pluck('encaminhamento');
 
     }
 
@@ -36,7 +42,12 @@ class VistoriaController extends AppBaseController
 
     public function create()
     {
-        return view('vistorias.create');
+        $resultados_acoes = $this->resultados_acoes;
+        $tipo_abordagem = $this->tipo_abordagem;
+        $tipo_abordagem = $this->tipo_abordagem;
+        $encaminhamentos = $this->encaminhamentos;
+
+        return view('vistorias.create',compact('resultados_acoes','tipo_abordagem','tipo_abordagem','encaminhamentos'));
     }
 
     public function createDetail($id){
@@ -68,6 +79,13 @@ class VistoriaController extends AppBaseController
 
     public function edit($id)
     {
+        $resultados_acoes = $this->resultados_acoes;
+        $encaminhamentos = $this->encaminhamentos;
+        $tipo_abordagem = $this->tipo_abordagem;
+        $encaminhamentos = $this->encaminhamentos;
+
+
+
         $vistoria = $this->vistoriaRepository->findWithoutFail($id);
         $vistoria->data_abordagem = $this->toBR($vistoria->data_abordagem);
         $ponto_id = $vistoria->ponto_id;
@@ -81,7 +99,7 @@ class VistoriaController extends AppBaseController
             return redirect(route('vistorias.index'));
         }
         
-        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat'));
+        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat','resultados_acoes'));
     }
 
 
