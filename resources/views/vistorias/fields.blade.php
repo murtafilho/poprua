@@ -1,49 +1,47 @@
 <!-- Data Abordagem Field -->
 <div class="form-group col-sm-1">
     {!! Form::label('data_abordagem', 'Data*') !!}
-    {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker','required'=>'required']) !!}
+    @if(isset($now))
+        {!! Form::text('data_abordagem', $now, ['class' => 'form-control datepicker','required'=>'required']) !!}
+    @else
+        {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker','required'=>'required']) !!}
+    @endif
 </div>
 
-<div class="form-group col-sm-2" required>
+<div class="form-group col-sm-3" required>
     {!! Form::label('ponto_id', 'Ponto*') !!}
-    <select class="form-control" name="ponto_id" id="ponto_id">
+    <select class="form-control" name="ponto_id" id="ponto_id" required>
         @if(isset($ponto))
             <option value="{{$ponto->id}}">{{$ponto->endereco->logradouro.' '.$ponto->numero.' - '.$ponto->endereco->bairro}}</option>
         @endif
     </select>
 </div>
 
-<div class="form-group col-sm-2">
+<div class="form-group col-sm-1">
 
-    {!! Form::label('tipo_abordagem', 'Tipo Abordagem*') !!}
-    {!! Form::select('tipo_abordagem',
-     ['Orientativa'=>'Orientativa',
-      'Fiscal'=>'Fiscal',
-      'Monitoramento'=>'Monitoramento'
-     ],
+    {!! Form::label('tipo_abordagem_id', 'Tipo Abordagem*') !!}
+    {!! Form::select('tipo_abordagem_id',
+     $tipo_abordagem,
      null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Resultado Acao Field -->
 <div class="form-group col-sm-2">
-    {!! Form::label('resultado_acao', 'Resultado Acao*') !!}
-    {!! Form::select('resultado_acao',
-    ['Fenômeno persiste'=>'Fenômeno persiste',
-    'Impactado parcialmente' => 'Impactado parcialmente',
-    'Não há mais o fenômeno'=>'Não há mais o fenômeno',
-    'Necessária nova abordagem'=>'Necessária nova abordagem'],null
+    {!! Form::label('resultado_acao_id', 'Resultado Acao*') !!}
+    {!! Form::select('resultado_acao_id',
+    $resultados_acoes,null
     , ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 
 <!-- Nomes Pessoas Field -->
-<div class="form-group col-sm-2">
+<div class="form-group col-sm-3">
     {!! Form::label('nomes_pessoas', 'Nomes Pessoas:') !!}
     {!! Form::text('nomes_pessoas', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Quantidade Pessoas Field -->
-<div class="form-group col-sm-2">
-    {!! Form::label('quantidade_pessoas', 'Quantidade Pessoas:') !!}
+<div class="form-group col-sm-1">
+    {!! Form::label('quantidade_pessoas', 'Quant. Pessoas:') !!}
     {!! Form::number('quantidade_pessoas', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -148,71 +146,26 @@
 
 <!-- E1 Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('e1', 'Encaminhamento 1') !!}
-    {!! Form::select('e1',[
-    'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Nenhum'=>'Nenhum',
-    'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
-        'Diversas Secretarias'=>'Diversas Secretarias',
-            'Conselho Tutelar'=>'Conselho Tutelar',
-                'Superintendência de Limpeza Urbana'=>'Superintendência de Limpeza Urbana',
-                    'Diretoria Regional de Assistência Social'=>'Diretoria Regional de Assistência Social',
-                        'Zoonoses'=>'Zoonoses',
-                        'Defesa Civil'=>'Defesa Civil',
-                        'SUDECAP'=>'SUDECAP',
-                        'Demais Secretarias'=>'Demais Secretarias'
-    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    {!! Form::label('e1_id', 'Encaminhamento 1') !!}
+    {!! Form::select('e1_id', $encaminhamentos ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- E2 Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('e2', 'Encaminhamento 2') !!}
-    {!! Form::select('e2', [
-    'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
-        'Diversas Secretarias'=>'Diversas Secretarias',
-            'Conselho Tutelar'=>'Conselho Tutelar',
-                'Superintendência de Limpeza Urbana'=>'Superintendência de Limpeza Urbana',
-                    'Diretoria Regional de Assistência Social'=>'Diretoria Regional de Assistência Social',
-                        'Zoonoses'=>'Zoonoses',
-                        'Defesa Civil'=>'Defesa Civil',
-                        'SUDECAP'=>'SUDECAP',
-                        'Demais Secretarias'=>'Demais Secretarias'
-    ],null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    {!! Form::select('e2_id', $encaminhamentos ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- E3 Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('e3', 'Encaminhamento 3') !!}
-    {!! Form::select('e3',[
-    'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
-        'Diversas Secretarias'=>'Diversas Secretarias',
-            'Conselho Tutelar'=>'Conselho Tutelar',
-                'Superintendência de Limpeza Urbana'=>'Superintendência de Limpeza Urbana',
-                    'Diretoria Regional de Assistência Social'=>'Diretoria Regional de Assistência Social',
-                        'Zoonoses'=>'Zoonoses',
-                        'Defesa Civil'=>'Defesa Civil',
-                        'SUDECAP'=>'SUDECAP',
-                        'Demais Secretarias'=>'Demais Secretarias'
-    ], null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    {!! Form::label('e3_id', 'Encaminhamento 3') !!}
+    {!! Form::select('e3_id', $encaminhamentos ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- E4 Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('e4', 'Encaminhamento 4') !!}
-    {!! Form::select('e4',[
-    'Serviço Especializado em Abordagem Social - SEAS'=>'Serviço Especializado em Abordagem Social - SEAS',
-    'Secretaria Municipal de Saúde'=>'Secretaria Municipal de Saúde',
-        'Diversas Secretarias'=>'Diversas Secretarias',
-            'Conselho Tutelar'=>'Conselho Tutelar',
-                'Superintendência de Limpeza Urbana'=>'Superintendência de Limpeza Urbana',
-                    'Diretoria Regional de Assistência Social'=>'Diretoria Regional de Assistência Social',
-                        'Zoonoses'=>'Zoonoses',
-                        'Defesa Civil'=>'Defesa Civil',
-                        'SUDECAP'=>'SUDECAP',
-                        'Demais Secretarias'=>'Demais Secretarias'
-    ] ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    {!! Form::label('e4_id', 'Encaminhamento 4') !!}
+    {!! Form::select('e4_id', $encaminhamentos ,null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- Material Apreendido Field -->
@@ -229,10 +182,8 @@
 
 <!-- Tipo Abrigo Desmontado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tipo_abrigo_desmontado', 'Tipo Abrigo Desmontado') !!}
-    {!! Form::select('tipo_abrigo_desmontado',[
-    'Abrigo de lona'=>'Abrigo de lona','Abrigo de madeirite'=>'Abrigo de madeirite','Barraca de camping'=>'Barraca de camping'
-    ], null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
+    {!! Form::label('tipo_abrigo_desmontado_id', 'Tipo Abrigo Desmontado') !!}
+    {!! Form::select('tipo_abrigo_desmontado_id',$tipo_abrigo_desmontado, null, ['class' => 'form-control','placeholder'=>'Selecionar...']) !!}
 </div>
 
 <!-- Qtd Kg Field -->

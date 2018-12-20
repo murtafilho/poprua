@@ -1,7 +1,12 @@
 <!-- Data Abordagem Field -->
 <div class="form-group col-sm-1">
     {!! Form::label('data_abordagem', 'Data*') !!}
+    @if(isset($now))
     {!! Form::text('data_abordagem', null, ['class' => 'form-control datepicker','required'=>'required']) !!}
+        @else
+        {!! Form::text('data_abordagem', $now, null, ['class' => 'form-control datepicker','required'=>'required']) !!}
+    @endif
+
 </div>
 
 <div class="form-group col-sm-2" required>
@@ -15,12 +20,9 @@
 
 <div class="form-group col-sm-2">
 
-    {!! Form::label('tipo_abordagem', 'Tipo Abordagem*') !!}
-    {!! Form::select('tipo_abordagem',
-     ['Orientativa'=>'Orientativa',
-      'Fiscal'=>'Fiscal',
-      'Monitoramento'=>'Monitoramento'
-     ],
+    {!! Form::label('tipo_abordagem_id', 'Tipo Abordagem*') !!}
+    {!! Form::select('tipo_abordagem_id',
+$tipo_abordagem,
      null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 

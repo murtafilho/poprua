@@ -25,12 +25,11 @@ class Vistoria extends Model
 
     public $fillable = [
         'data_abordagem',
-        'tipo_abordagem',
+        'tipo_abordagem_id',
         'nomes_pessoas',
         'quantidade_pessoas',
         'casal',
         'nivel_complexidade',
-        'classificacao',
         'num_reduzido',
         'catador_reciclados',
         'resistencia',
@@ -43,15 +42,15 @@ class Vistoria extends Model
         'agrupamento_quimico',
         'saude_mental',
         'animais',
-        'e1',
-        'e2',
-        'e3',
-        'e4',
+        'e1_id',
+        'e2_id',
+        'e3_id',
+        'e4_id',
         'material_apreendido',
         'material_descartado',
-        'tipo_abrigo_desmontado',
+        'tipo_abrigo_desmontado_id',
         'qtd_kg',
-        'resultado_acao',
+        'resultado_acao_id',
         'movimento_migratorio',
         'observacao',
         'ponto_id'
@@ -77,10 +76,10 @@ class Vistoria extends Model
         'agrupamento_quimico' => 'string',
         'saude_mental' => 'string',
         'animais' => 'string',
-        'e1' => 'string',
-        'e2' => 'string',
-        'e3' => 'string',
-        'e4' => 'string',
+        'e1_id' => 'integer',
+        'e2_id' => 'integer',
+        'e3_id' => 'integer',
+        'e4_id' => 'integer',
         'material_apreendido' => 'string',
         'material_descartado' => 'string',
         'tipo_abrigo_desmontado' => 'string',
@@ -102,6 +101,10 @@ class Vistoria extends Model
 
     public  function ponto(){
     	return $this->belongsTo(Ponto::class);
+    }
+
+    public function encaminhamento(){
+        return $this->belongsTo(Encaminhamento::class);
     }
 
     

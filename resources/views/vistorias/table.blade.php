@@ -6,6 +6,7 @@
     }
 </style>
 @endsection
+{!! $vistorias->appends(Request::except('page'))->links() !!}
 <table class="table table-responsive" id="vistorias-table">
     <thead>
 

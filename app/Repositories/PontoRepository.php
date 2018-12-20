@@ -45,7 +45,7 @@ class PontoRepository extends BaseRepository
 		
 		$pontos = DB::table('qry_pontos');
 		if($logradouro){
-			if($tipo_busca == '1'){
+			if($tipo_busca == '0'){
 				$pontos = $pontos ->where('logradouro','LIKE','%'.$request->logradouro.'%');
 			}else{
 				$pontos = $pontos ->where('logradouro','like',$request->logradouro.'%');

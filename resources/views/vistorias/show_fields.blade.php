@@ -71,19 +71,19 @@
     </tr>
     <tr>
         <td>Encaminhamento 1</td>
-        <td>{{$vistoria->e1}}</td>
+        <td>{{$vistoria->encaminhamento1}}</td>
     </tr>
     <tr>
         <td>Encaminhamento 2</td>
-        <td>{{$vistoria->e2}}</td>
+        <td>{{$vistoria->encaminhamento2}}</td>
     </tr>
     <tr>
         <td>Encaminhamento 3</td>
-        <td>{{$vistoria->e3}}</td>
+        <td>{{$vistoria->encaminhamento3}}</td>
     </tr>
     <tr>
         <td>Encaminhamento 4</td>
-        <td>{{$vistoria->e4}}</td>
+        <td>{{$vistoria->encaminhamento4}}</td>
     </tr>
     <tr>
         <td>Material apreendido?</td>

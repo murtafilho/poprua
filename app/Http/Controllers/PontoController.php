@@ -41,6 +41,7 @@ class PontoController extends AppBaseController
 	private $pontoRepository;
 	private $enderecoRepository;
 	private $vistoriaRepository;
+	private $caracteristica_abrigo;
 
 	public function __construct(PontoRepository $pontoRepository,
 	                            EnderecoRepository $enderecoRepository,
@@ -51,6 +52,8 @@ class PontoController extends AppBaseController
 		$this->pontoRepository    = $pontoRepository;
 		$this->enderecoRepository = $enderecoRepository;
 		$this->vistoriaRepository = $vistoriaRepository;
+		$this->caracteristica_abrigo = DB::table('caracteristica_abrigo')->pluck('caracteristica_abrigo','id');
+
 	}
 
 	public function index(Request $request)
@@ -64,7 +67,8 @@ class PontoController extends AppBaseController
 
 	public function create()
 	{
-		return view('pontos.create');
+	    $caracteristica_abrigo = $this->caracteristica_abrigo;
+		return view('pontos.create',compact('caracteristica_abrigo'));
 	}
 
 	public function store(CreatePontoRequest $request)
@@ -93,15 +97,15 @@ class PontoController extends AppBaseController
 	public function edit($id)
 	{
 		$ponto = $this->pontoRepository->findWithoutFail($id);
-
+        $caracteristica_abrigo = $this->caracteristica_abrigo;
 		if (empty($ponto))
 		{
 			Flash::error('Ponto não cadastrado');
 
 			return redirect(route('pontos.index'));
 		}
-
-		return view('pontos.edit')->with('ponto', $ponto);
+        $caracteristica_abrigo = $this->caracteristica_abrigo;
+		return view('pontos.edit',compact('ponto','caracteristica_abrigo'));
 	}
 
 
@@ -143,7 +147,7 @@ class PontoController extends AppBaseController
 	}
 
 	public function migrar($id){
-	    $vistorias = DB::table('qry_vistorias')->where('ponto_id','=',$id)->get();
+	    $vistorias = DB::table('qry_vistorias')->where('ponto_id','=',$id)->paginate(10);
         $keys = $vistorias->pluck('id')->toArray();
 
         session(['vistorias_ids' => $keys]);

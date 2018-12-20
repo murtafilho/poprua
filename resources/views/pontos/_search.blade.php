@@ -1,7 +1,7 @@
 <form class="navbar-form" role="search">
 
 <div class="form-group">
-    {!! Form::select('tipo_busca',['0' => 'Inicia com','1'=>'Contém o termo'],null, ['class' => 'form-control']) !!}
+    {!! Form::select('tipo_busca',['0' => 'Contém o termo','1'=>'Inicia com'],null, ['class' => 'form-control']) !!}
 </div>
     <div class="input-group add-on">
         <input class="form-control" placeholder="Logradouro" name="logradouro" id="srch-term" type="text" value="{{$logradouro}}">

@@ -21,6 +21,7 @@ class VistoriaController extends AppBaseController
     private $resultados_acoes;
     private $tipo_abordagem;
     private $encaminhamentos;
+    private $tipo_abrigo_desmontado;
 
 	public function __construct(VistoriaRepository $vistoriaRepo, PontoRepository $pontoRepository)
     {
@@ -28,7 +29,8 @@ class VistoriaController extends AppBaseController
         $this->ponto = $pontoRepository;
         $this->resultados_acoes = DB::table('resultados_acoes')->pluck('resultado','id');
         $this->tipo_abordagem = DB::table('tipo_abordagem')->pluck('tipo','id');
-        $this->encaminhamentos = DB::table('encaminhamentos')->pluck('encaminhamento');
+        $this->encaminhamentos = DB::table('encaminhamentos')->pluck('encaminhamento','id');
+        $this->tipo_abrigo_desmontado = DB::table('tipo_abrigo_desmontado')->pluck('tipo_abrigo','id');
 
     }
 
@@ -44,10 +46,11 @@ class VistoriaController extends AppBaseController
     {
         $resultados_acoes = $this->resultados_acoes;
         $tipo_abordagem = $this->tipo_abordagem;
-        $tipo_abordagem = $this->tipo_abordagem;
+        $tipo_abrigo_desmontado = $this->tipo_abrigo_desmontado;
         $encaminhamentos = $this->encaminhamentos;
+        $now = date('d-m-Y');
 
-        return view('vistorias.create',compact('resultados_acoes','tipo_abordagem','tipo_abordagem','encaminhamentos'));
+        return view('vistorias.create',compact('resultados_acoes','tipo_abordagem','tipo_abrigo_desmontado','encaminhamentos','now'));
     }
 
     public function createDetail($id){
@@ -68,7 +71,6 @@ class VistoriaController extends AppBaseController
     {
 	    $vistoria = $this->vistoriaRepository->visualizar($id);
 
-
         if (empty($vistoria)) {
             Flash::error('Vistoria not found');
 
@@ -80,8 +82,8 @@ class VistoriaController extends AppBaseController
     public function edit($id)
     {
         $resultados_acoes = $this->resultados_acoes;
-        $encaminhamentos = $this->encaminhamentos;
         $tipo_abordagem = $this->tipo_abordagem;
+        $tipo_abrigo_desmontado = $this->tipo_abrigo_desmontado;
         $encaminhamentos = $this->encaminhamentos;
 
 
@@ -99,7 +101,7 @@ class VistoriaController extends AppBaseController
             return redirect(route('vistorias.index'));
         }
         
-        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat','resultados_acoes'));
+        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat','resultados_acoes','tipo_abordagem','tipo_abrigo_desmontado','encaminhamentos'));
     }
 
 
@@ -117,7 +119,7 @@ class VistoriaController extends AppBaseController
 
         $vistoria = $this->vistoriaRepository->update($request->all(), $id);
 
-        Flash::success('Vistoria atualizada com sucesso"');
+        Flash::success('Vistoria atualizada com sucesso!');
 
         return redirect(route('vistorias.index'));
     }

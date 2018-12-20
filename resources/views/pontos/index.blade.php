@@ -15,7 +15,7 @@
             <div class="box-body">
                 @include('pontos._search')
                     @include('pontos.table')
-                    {!! $pontos->appends(Request::except('page'))->links() !!}
+
             </div>
 
         </div>

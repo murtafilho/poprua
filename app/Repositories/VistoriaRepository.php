@@ -57,7 +57,7 @@ class VistoriaRepository extends BaseRepository
     	$numero = $request->numero;
     	$vistorias = DB::table('qry_vistorias');
 	    if($logradouro){
-		    $vistorias = $vistorias ->where('logradouro','like',$request->logradouro.'%');
+		    $vistorias = $vistorias ->where('logradouro','like','%'.$request->logradouro.'%');
 	    }
 	    if($numero){
 		    $vistorias = $vistorias ->where('numero','=',$request->numero);

@@ -14,22 +14,9 @@
 
 <!-- Caracteristica Abrigo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('caracteristica_abrigo', 'Caracteristica Abrigo*') !!}
-    {!! Form::select('caracteristica_abrigo',
-     [
-     'Na propriedade pública'=>'Na propriedade pública',
-     'Na propriedade privada'=>'Na propriedade privada',
-     'Baixio'=>'Baixio',
-     'Canteiro central'=>'Canteiro central',
-     'Praça pública'=>'Praça pública',
-     'Pista de rolamento'=>'Pista de rolamento',
-     'Marquise de propriedade comercial ativa'=>'Marquise de propriedade comercial ativa',
-     'Marquise de propriedade comercial ativa - bancos'=>'Marquise de propriedade comercial ativa - bancos',
-     'Marquise de propriedade comercial inativa'=>'Marquise de propriedade comercial inativa',
-     'Passeio em frente a propriedade pública'=>'Passeio em frente a propriedade pública',
-     'Passeio em frente a propriedade privada'=>'Passeio em frente a propriedade privada',
-     'Marquise de propriedade residencial'=>'Marquise de propriedade residencial'
-     ],
+    {!! Form::label('caracteristica_abrigo_id', 'Caracteristica Abrigo*') !!}
+    {!! Form::select('caracteristica_abrigo_id',
+     $caracteristica_abrigo,
      null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
 </div>
 

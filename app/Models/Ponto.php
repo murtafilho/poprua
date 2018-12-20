@@ -18,7 +18,7 @@ class Ponto extends Model
 
 	public $fillable = [
 		'numero',
-		'caracteristica_abrigo',
+		'caracteristica_abrigo_id',
 		'complemento',
 		'endereco_id'
 	];
@@ -33,7 +33,8 @@ class Ponto extends Model
 		'numero' => 'string',
 		'caracteristica_abrigo' => 'string',
 		'complemento' => 'string',
-		'endereco_id' => 'integer'
+		'endereco_id' => 'integer',
+        'caracteristica_abrigo_id' =>'integer'
 	];
 
 	/**

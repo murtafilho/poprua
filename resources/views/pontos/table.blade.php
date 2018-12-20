@@ -6,6 +6,7 @@
     }
 </style>
 @endsection
+{!! $pontos->appends(Request::except('page'))->links() !!}
 <table class="table table-responsive" id="pontos-table">
     <thead>
     <th></th>
