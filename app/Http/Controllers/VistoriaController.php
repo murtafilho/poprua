@@ -54,8 +54,13 @@ class VistoriaController extends AppBaseController
     }
 
     public function createDetail($id){
-		$ponto = $this->ponto->find($id);
-	    return view('vistorias.create',compact('ponto'));
+        $ponto = $this->ponto->find($id);
+        $resultados_acoes = $this->resultados_acoes;
+        $tipo_abordagem = $this->tipo_abordagem;
+        $tipo_abrigo_desmontado = $this->tipo_abrigo_desmontado;
+        $encaminhamentos = $this->encaminhamentos;
+        $now = date('d-m-Y');
+	    return view('vistorias.create',compact('ponto','resultados_acoes','tipo_abordagem','tipo_abrigo_desmontado','encaminhamentos','now'));
     }
 
     public function store(CreateVistoriaRequest $request)
@@ -64,6 +69,7 @@ class VistoriaController extends AppBaseController
 	    $dt = $input['data_abordagem'];
         $input['data_abordagem'] = $this->dtus($dt);
         $vistoria = $this->vistoriaRepository->create($input);
+        Flash::success('Vistoria adicionada com sucesso!');
         return redirect(route('vistorias.index'));
     }
 

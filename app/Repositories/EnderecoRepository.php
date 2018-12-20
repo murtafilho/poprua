@@ -56,7 +56,7 @@ class EnderecoRepository extends BaseRepository
 		$data = $this->model()
 			->take(8)
 			->select('id','logradouro','bairro','regional','tipo')
-			->where('logradouro', 'LIKE', $q. '%')
+			->where('logradouro', 'LIKE', '%'.$q. '%')
 			->orderBy('logradouro')
 			->get();
 

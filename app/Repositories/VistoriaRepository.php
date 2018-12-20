@@ -48,14 +48,14 @@ class VistoriaRepository extends BaseRepository
     }
 
     public function listar(){
-	    $vistorias = DB::table('qry_vistorias')->paginate(10);
+	    $vistorias = DB::table('qry_vistorias_v2')->paginate(10);
 	    return $vistorias;
     }
 
     public function buscar($request){
     	$logradouro = $request->logradouro;
     	$numero = $request->numero;
-    	$vistorias = DB::table('qry_vistorias');
+    	$vistorias = DB::table('qry_vistorias_v2');
 	    if($logradouro){
 		    $vistorias = $vistorias ->where('logradouro','like','%'.$request->logradouro.'%');
 	    }
@@ -67,13 +67,13 @@ class VistoriaRepository extends BaseRepository
     }
 
     public function listarById($id){
-    	$vistorias = DB::table('qry_vistorias')
+    	$vistorias = DB::table('qry_vistorias_v2')
     	->where('ponto_id','=',$id)->paginate(10);
     	return $vistorias;
     }
 
     public function visualizar($id){
-	    $vistoria = DB::table('qry_vistorias')->find($id);
+	    $vistoria = DB::table('qry_vistorias_v2')->find($id);
 	    return $vistoria;
     }
 }

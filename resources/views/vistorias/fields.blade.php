@@ -19,7 +19,7 @@
 
 <div class="form-group col-sm-1">
 
-    {!! Form::label('tipo_abordagem_id', 'Tipo Abordagem*') !!}
+    {!! Form::label('tipo_abordagem_id', 'Abordagem*') !!}
     {!! Form::select('tipo_abordagem_id',
      $tipo_abordagem,
      null, ['class' => 'form-control','placeholder'=>'Selecionar','required'=>'required']) !!}
@@ -41,7 +41,7 @@
 
 <!-- Quantidade Pessoas Field -->
 <div class="form-group col-sm-1">
-    {!! Form::label('quantidade_pessoas', 'Quant. Pessoas:') !!}
+    {!! Form::label('quantidade_pessoas', 'Qt. Pessoas:') !!}
     {!! Form::number('quantidade_pessoas', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -188,7 +188,7 @@
 
 <!-- Qtd Kg Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('qtd_kg', 'Qtd Kg:') !!}
+    {!! Form::label('qtd_kg', 'Qt. Kg:') !!}
     {!! Form::text('qtd_kg', null, ['class' => 'form-control']) !!}
 </div>
 

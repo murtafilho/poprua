@@ -43,7 +43,7 @@ class PontoRepository extends BaseRepository
 		$numero = $request->numero;
 		$tipo_busca = $request->tipo_busca;
 		
-		$pontos = DB::table('qry_pontos');
+		$pontos = DB::table('qry_pontos_v2');
 		if($logradouro){
 			if($tipo_busca == '1'){
 				$pontos = $pontos ->where('logradouro','LIKE','%'.$request->logradouro.'%');
@@ -60,7 +60,7 @@ class PontoRepository extends BaseRepository
 	}
 
 	public function listar(){
-		$pontos = DB::table('qry_pontos')->paginate(20);
+		$pontos = DB::table('qry_pontos_v2')->paginate(20);
 		return $pontos;
 	}
 

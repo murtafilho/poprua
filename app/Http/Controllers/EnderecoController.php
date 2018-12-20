@@ -148,7 +148,7 @@ class EnderecoController extends AppBaseController
 		$data = DB::table('ender')
 			->take(30)
 			->select('id','logradouro','bairro','regional')
-			->where('logradouro', 'LIKE', $q. '%')
+			->where('logradouro', 'LIKE', '%'.$q. '%')
 			->orderBy('logradouro')
 			->orderBy('regional')
 			->orderBy('bairro')

@@ -12,7 +12,7 @@ class FotoController extends Controller
     {
         
         $fotos = DB::table('fotos')->where('vistoria_id','=',$vistoria_id)->orderBy('id','DESC')->get();
-        $vistoria = DB::table('qry_vistorias')->where('id','=',$vistoria_id)->first();
+        $vistoria = DB::table('qry_vistorias_v2')->where('id','=',$vistoria_id)->first();
         return view('fotos', compact('fotos','vistoria_id','vistoria'));
     }
     public function store(Request $request)

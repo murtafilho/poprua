@@ -147,7 +147,7 @@ class PontoController extends AppBaseController
 	}
 
 	public function migrar($id){
-	    $vistorias = DB::table('qry_vistorias')->where('ponto_id','=',$id)->paginate(10);
+	    $vistorias = DB::table('qry_vistorias_v2')->where('ponto_id','=',$id)->paginate(10);
         $keys = $vistorias->pluck('id')->toArray();
 
         session(['vistorias_ids' => $keys]);
