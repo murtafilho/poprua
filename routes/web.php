@@ -47,3 +47,7 @@ Route::get('saneamento','saneamentoController@executar');
 Route::get('migrar/{id}','PontoController@migrar')->name('pontos.migrar');
 Route::get('processar_migracao','PontoController@processar_migracao')->name('processar.migracao');
 
+Route::get('geo/{ponto_id}','GeoController@index')->name('geo');
+
+Route::get('converter', 'GeoController@converter')->name('converter');
+
