@@ -4,11 +4,19 @@
         height: 600px;  
         width: 100%; 
        }
+
+       .hover{
+        background-color:#3C8DBC;
+        color:white;
+        cursor: pointer;
+
+        }
     </style>
 @endsection
+
 <h3>Ponto: {{$ponto->logradouro.' '.$ponto->numero.' - '.$ponto->bairro.' '.$ponto->regional.' '.$ponto->complemento}}</h3>
 @include('geo._search')
-
+<input type="hidden" id="ponto_id" value="{{$ponto->id}}">
 <table class="table table-responsive" id="enderecamentos-table">
     <thead>
         <th>Idend</th>
@@ -42,24 +50,37 @@
     @endforeach
     </tbody>
 </table>
+
 {!! $enderecamentos->appends(Request::except('page'))->links() !!}
+
 <div class="row">
   <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" disabled id="latlong">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Georrefenciar Objeto</button>
-      </span>
+  <br>
+    <form class="form-inline" action="#">
+    <div class="form-group">
+        <label for="lat1" class="form-controll">Lat: </label>
+        <input type="text" class="form-control" id="lat1" disabled>
+    </div>
+    <div class="form-group">
+    <label for="lng1" class="form-controll">Lng: </label>
+        <input type="text" class="form-control" id="lng1" disabled>
+    </div>
+    <button id="btn-georreferenciar" type="submit" class="btn btn-default">Georreferenciar Ponto</button>
+    </form>
+    <br>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
-
-
-
 <div id="map"></map>
 @section('scripts')
 <script>
-$(function(){
+    $(function(){
+        $('tbody tr').hover(function() {
+        $(this).addClass('hover');
+    }, function() {
+        $(this).removeClass('hover');
+    });
+
     $('tbody tr').click(function(){
         var leste = $(this).children().eq(9).text();
         var norte = $(this).children().eq(10).text();
@@ -79,34 +100,67 @@ $(function(){
             }
         })
     })
-})
 
+    $('#btn-georreferenciar').click(function(event){
+        var lat = $("#lat1").val();
+        var lng = $("#lng1").val();
+        var id = $('#ponto_id').val();
+        url = "{{route('georreferenciar')}}";
+        $.ajax({
+            url: url,
+            data:{
+                lat:lat,
+                lng:lng,
+                id:id
+            },
+            success: function(result){
+                console.log(result);
+                
+            }
+        })
+        event.preventDefault();
+    })
+
+})
+</script>
+<script>
 var map;
 function initMap(lat,lng) {
-          
-    var myll = {lat:lat,lng:lng};
+
+    var ponto = {lat: lat, lng: lng};
+    var markers = [];
+    
     map = new google.maps.Map(document.getElementById('map'), {
-        center: myll,
-        zoom: 18
+        zoom: 20,
+        center: ponto
     });
-    var marker = new google.maps.Marker({position: myll, map: map});
 
-    google.maps.event.addListener(map, 'click', function (e) {
+    map.addListener('click', function(event) {
+        setMapOnAll(null);
+        addMarker(event.latLng);
+        $("#lat1").val(event.latLng.lat());
+        $("#lng1").val(event.latLng.lng());
 
-        //Determine the location where the user has clicked.
-        var location = e.latLng;
+    });
 
-        $("#latlong").val(e.latLng);
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
 
-        //Create a marker and placed it on the map.
+    addMarker(ponto);
+
+    function addMarker(ponto) {
         var marker = new google.maps.Marker({
-            position: location,
-            map: map
+        position: ponto,
+        map: map
         });
-
-    });
+        markers.push(marker);
+    }
 }
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSYnyUUzk1tMCsLVDbnUL6g8zmAWmml7c&"
 async defer></script>
 @endsection

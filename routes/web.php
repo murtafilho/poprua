@@ -51,3 +51,5 @@ Route::get('geo/{ponto_id}','GeoController@index')->name('geo');
 
 Route::get('converter', 'GeoController@converter')->name('converter');
 
+Route::get('georreferenciar', 'GeoController@georreferenciar')->name('georreferenciar');
+
