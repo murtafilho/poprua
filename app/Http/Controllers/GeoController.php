@@ -68,11 +68,11 @@ class GeoController extends AppBaseController
         $lat = $request->lat;
         $lng = $request->lng;
         $id = $request->id;
-        $update = DB::uptdate('pontos')->where('id',$id)->update(['lat'=>$lat,'lng'=>$lng]);
+        $update = DB::table('pontos')->where('id',$id)->update(['lat' => $lat,'lng' => $lng]);
         if ($update){
-            return true;
+            return "200";
         }else{
-            return false;
+            return "410";
         }
     }
 

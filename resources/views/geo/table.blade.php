@@ -54,7 +54,7 @@
 {!! $enderecamentos->appends(Request::except('page'))->links() !!}
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="">
   <br>
     <form class="form-inline" action="#">
     <div class="form-group">
@@ -65,7 +65,8 @@
     <label for="lng1" class="form-controll">Lng: </label>
         <input type="text" class="form-control" id="lng1" disabled>
     </div>
-    <button id="btn-georreferenciar" type="submit" class="btn btn-default">Georreferenciar Ponto</button>
+    <span id="label1" class="label label-success">Ponto georreferenciado com sucesso!</span>
+    <button id="btn-georreferenciar" type="submit" class="btn btn-primary">Georreferenciar Ponto</button>
     </form>
     <br>
     </div><!-- /input-group -->
@@ -74,6 +75,8 @@
 <div id="map"></map>
 @section('scripts')
 <script>
+    $("#label1").hide();
+    $("#btn-georreferenciar").hide();
     $(function(){
         $('tbody tr').hover(function() {
         $(this).addClass('hover');
@@ -118,6 +121,8 @@
                 
             }
         })
+        $(this).toggle(1000);
+        $("#label1").toggle(1000);
         event.preventDefault();
     })
 
@@ -157,6 +162,7 @@ function initMap(lat,lng) {
         map: map
         });
         markers.push(marker);
+        $("#btn-georreferenciar").toggle(1000);
     }
 }
 </script>
