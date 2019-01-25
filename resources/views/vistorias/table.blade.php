@@ -6,7 +6,7 @@
     }
 </style>
 @endsection
-{!! $vistorias->appends(Request::except('page'))->links() !!}
+
 <table class="table table-responsive" id="vistorias-table">
     <thead>
 
@@ -54,7 +54,7 @@
     @endforeach
     </tbody>
 </table>
-
+{!! $vistorias->appends(Request::except('page'))->links() !!}
 @section('scripts')
 <script>
 $('tbody tr').hover(function() {

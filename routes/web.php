@@ -49,7 +49,14 @@ Route::get('processar_migracao','PontoController@processar_migracao')->name('pro
 
 Route::get('geo/{ponto_id}','GeoController@index')->name('geo');
 
+Route::get('setSearch/{ponto_id}','GeoController@setSearch')->name('setsearch');
+
 Route::get('converter', 'GeoController@converter')->name('converter');
 
 Route::get('georreferenciar', 'GeoController@georreferenciar')->name('georreferenciar');
 
+Route::get('markers','Geocontroller@markers')->name('markers');
+
+Route::get('teste',function(){
+  return redirect()->to('http://localhost:8000/pontos?page=7');
+});

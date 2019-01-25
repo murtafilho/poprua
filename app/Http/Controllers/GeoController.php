@@ -12,6 +12,8 @@ use Flash;
 use Response;
 use App\Http\Services\UTMtoLL;
 use Illuminate\Support\Facades\DB;
+use Route;
+
 
 class GeoController extends AppBaseController
 {
@@ -31,9 +33,19 @@ class GeoController extends AppBaseController
         $ponto_id = $request->ponto_id;
         $logradouro = $request->logradouro;
         $numero = $request->numero;
-        $enderecamentos = $this->buscar($request);
+        $enderecamentos = $this->buscar($logradouro,$numero);
         $ponto = DB::table('qry_pontos_v2')->where('id','=',$ponto_id)->first();
 
+        return view('geo.index',compact('enderecamentos','ponto_id','ponto','logradouro','numero'));
+    }
+
+    public function setSearch(Request $request){
+
+        $ponto_id = $request->ponto_id;
+        $ponto = DB::table('qry_pontos_v2')->where('id','=',$ponto_id)->first();
+        $logradouro = $ponto->logradouro;
+        $numero = $ponto->numero;
+        $enderecamentos = $this->buscar($logradouro,$numero);
         return view('geo.index',compact('enderecamentos','ponto_id','ponto','logradouro','numero'));
     }
 
@@ -44,10 +56,8 @@ class GeoController extends AppBaseController
         return $ll[0].','.$ll[1];
     }
 
-    public function buscar($request){
-        $logradouro = $request->logradouro;
-        $numero = $request->numero;
-        $tipo_busca = $request->tipo_busca;
+    public function buscar($logradouro,$numero){
+        $tipo_busca = '0';
         $data = DB::table('endereco_base');
         if($logradouro){
 			if($tipo_busca == '0'){
@@ -58,7 +68,7 @@ class GeoController extends AppBaseController
 		}
 
 		if($numero){
-			$data = $data ->where('NUMERO_IMO','=',$request->numero);
+			$data = $data ->where('NUMERO_IMO','=',$numero);
 		}
 	
 		return  $data->orderBy('NUMERO_IMO','ASC')->paginate(5);
@@ -74,6 +84,11 @@ class GeoController extends AppBaseController
         }else{
             return "410";
         }
+    }
+
+    public function markers(){
+        $markers = DB::table('pontos')->where('lat','<>','')->get();
+        return $markers->toJson();
     }
 
  

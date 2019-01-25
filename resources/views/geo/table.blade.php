@@ -11,6 +11,7 @@
         cursor: pointer;
 
         }
+
     </style>
 @endsection
 
@@ -65,7 +66,7 @@
     <label for="lng1" class="form-controll">Lng: </label>
         <input type="text" class="form-control" id="lng1" disabled>
     </div>
-    <span id="label1" class="label label-success">Ponto georreferenciado com sucesso!</span>
+    <span id="label1" class=""> Ponto georreferenciado com sucesso!</span>
     <button id="btn-georreferenciar" type="submit" class="btn btn-primary">Georreferenciar Ponto</button>
     </form>
     <br>
@@ -75,6 +76,14 @@
 <div id="map"></map>
 @section('scripts')
 <script>
+    var latini = {{$ponto->lat}} + "";
+    var lngini = {{$ponto->lng}} + "";   
+    $(function(){
+        if(latini != ""){
+            initMap(parseFloat(latini) ,parseFloat(lngini));
+        }
+        
+    })
     $("#label1").hide();
     $("#btn-georreferenciar").hide();
     $(function(){
@@ -83,6 +92,7 @@
     }, function() {
         $(this).removeClass('hover');
     });
+    
 
     $('tbody tr').click(function(){
         var leste = $(this).children().eq(9).text();
@@ -98,10 +108,13 @@
                 result = result.split(',');
                 lat = parseFloat(result[0]);
                 lng = parseFloat(result[1]);
+                $("#lat1").val(lat);
+                $("#lng1").val(lng);
                 
                 initMap(lat,lng);
             }
         })
+        $("#btn-georreferenciar").toggle(1000);
     })
 
     $('#btn-georreferenciar').click(function(event){
@@ -130,13 +143,14 @@
 </script>
 <script>
 var map;
+
 function initMap(lat,lng) {
 
     var ponto = {lat: lat, lng: lng};
     var markers = [];
     
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 20,
+        zoom: 16,
         center: ponto
     });
 
@@ -145,6 +159,8 @@ function initMap(lat,lng) {
         addMarker(event.latLng);
         $("#lat1").val(event.latLng.lat());
         $("#lng1").val(event.latLng.lng());
+            $("#label1").hide();
+            $("#btn-georreferenciar").show();
 
     });
 
@@ -162,7 +178,7 @@ function initMap(lat,lng) {
         map: map
         });
         markers.push(marker);
-        $("#btn-georreferenciar").toggle(1000);
+        
     }
 }
 </script>

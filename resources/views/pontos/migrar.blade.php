@@ -4,9 +4,9 @@
 <div class="content">
     <form class="form-inline" action="{{route('processar.migracao')}}">
         <div class="form-group col-sm-3" required>
-            {!! Form::label('ponto_id', 'Inerir o #ID do ponto de transferência:') !!}
+            {!! Form::label('ponto_id', 'Inserir o #ID do ponto de transferência:') !!}
             <input type="number" name="ponto_id" id="ponto_id" class="form-control">
-            <input type="submit" class="form-control btn btn-danger">
+            <button type="submit" class="form-control btn btn-danger">Confirmar</button>
         </div>
     </form>
 

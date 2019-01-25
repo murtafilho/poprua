@@ -13,4 +13,11 @@
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
         </div>
     </div>
+
+    <div class="input-group add-on">
+        <div class="input-group-btn">
+            <a href="{{session('url_lista_pontos')}}" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i>Retornar</a>
+        </div>
+    </div>
+
 </form>

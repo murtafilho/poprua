@@ -6,7 +6,7 @@
     }
 </style>
 @endsection
-{!! $pontos->appends(Request::except('page'))->links() !!}
+
 <table class="table table-responsive table-bordered" id="pontos-table">
     <thead>
     <th></th>
@@ -26,10 +26,11 @@
     </thead>
     <tbody>
     @foreach($pontos as $ponto)
+    @php $ponto->lat?$classe='btn btn-sm btn-success':$classe='btn btn-sm btn-danger' @endphp
         <tr>
             <td><a href="{!! route('pontos.show', [$ponto->id]) !!}" class='btn btn-sm btn-default'><i class="glyphicon glyphicon-eye-open"></i>  Vistorias [{{$ponto->contador}}]</a></td>
             <td><a href="{!! route('pontos.migrar', [$ponto->id]) !!}" class='btn btn-sm btn-default'><i class="glyphicon glyphicon-retweet"></i></a></td>
-            <td><a href="{!! route('geo', ['ponto_id' => $ponto->id]) !!}" class='btn btn-sm btn-default'><i class="glyphicon glyphicon-pushpin"></i> Geocoder </a></td>
+            <td><a href="{!! route('setsearch', ['ponto_id' => $ponto->id]) !!}" class='{{$classe}}'><i class="glyphicon glyphicon-pushpin"></i></a></td>
             <td>{!! $ponto->id !!}</td>
             <td>{!!  \Carbon\Carbon::parse($ponto->data_a)->format('d-m-Y') !!}</td>
             <td>{!! $ponto->tipo !!}</td>
@@ -52,7 +53,7 @@
     @endforeach
     </tbody>
 </table>
-
+{!! $pontos->appends(Request::except('page'))->links() !!}
 @section('scripts')
 <script>
 $('tbody tr').hover(function() {

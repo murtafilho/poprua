@@ -61,6 +61,8 @@ class PontoController extends AppBaseController
 		$logradouro = $request->logradouro;
 		$numero     = $request->numero;
 		$pontos     = $this->pontoRepository->buscar($request);
+		$fullUrl = $request->fullUrl();
+		$url_lista_pontos = session(['url_lista_pontos' => $fullUrl]);
 
 		return view('pontos.index', compact('pontos', 'logradouro', 'numero'));
 	}
@@ -151,7 +153,7 @@ class PontoController extends AppBaseController
         $keys = $vistorias->pluck('id')->toArray();
 
         session(['vistorias_ids' => $keys]);
-        session(['ponto_id' => $id]);
+		session(['ponto_id' => $id]);
 
 	    return view('pontos.migrar',compact('vistorias','keys'));
 
@@ -159,14 +161,14 @@ class PontoController extends AppBaseController
 
     public function processar_migracao(Request $request){
         $vistorias_ids = session('vistorias_ids');
-        $ponto_id = session('ponto_id');
+		$ponto_id = session('ponto_id');
         foreach ($vistorias_ids as $vistoria_id){
             DB::update("update vistorias set ponto_id = $request->ponto_id where id = $vistoria_id ");
         }
         DB::delete("delete from pontos where id = $ponto_id");
         Flash::success('Vistorias migradas com sucesso para o ponto #<a href= '.route('pontos.show',['id'=>$request->ponto_id]).'>'.$request->ponto_id.'</a>');
 
-        return redirect()->route('pontos.index');
+        return redirect()->to(session('url_lista_pontos'));
     }
 
     public function autoComplete(Request $request)

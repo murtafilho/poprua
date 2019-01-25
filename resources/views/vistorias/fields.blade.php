@@ -189,7 +189,7 @@
 <!-- Qtd Kg Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('qtd_kg', 'Qt. Kg:') !!}
-    {!! Form::text('qtd_kg', null, ['class' => 'form-control']) !!}
+    {!! Form::number('qtd_kg', null, ['class' => 'form-control']) !!}
 </div>
 
 
