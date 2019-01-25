@@ -38,7 +38,9 @@ class VistoriaController extends AppBaseController
     {
     	$logradouro = $request->logradouro;
     	$numero = $request->numero;
-		$vistorias = $this->vistoriaRepository->buscar($request);
+        $vistorias = $this->vistoriaRepository->buscar($request);
+        $fullUrl = $request->fullUrl();
+        session(['url_lista_vistorias' => $fullUrl]);
         return view('vistorias.index',compact('vistorias','logradouro','numero'));
     }
 
@@ -127,7 +129,7 @@ class VistoriaController extends AppBaseController
 
         Flash::success('Vistoria atualizada com sucesso!');
 
-        return redirect(route('vistorias.index'));
+        return redirect()->to(session('url_lista_vistorias'));
     }
 
     public function destroy($id)

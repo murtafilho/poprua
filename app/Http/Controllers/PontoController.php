@@ -62,7 +62,7 @@ class PontoController extends AppBaseController
 		$numero     = $request->numero;
 		$pontos     = $this->pontoRepository->buscar($request);
 		$fullUrl = $request->fullUrl();
-		$url_lista_pontos = session(['url_lista_pontos' => $fullUrl]);
+		session(['url_lista_pontos' => $fullUrl]);
 
 		return view('pontos.index', compact('pontos', 'logradouro', 'numero'));
 	}
@@ -126,7 +126,7 @@ class PontoController extends AppBaseController
 
 		Flash::success('Ponto atualizado com sucesso!');
 
-		return redirect(route('pontos.index'));
+		return redirect()->to(session('url_lista_pontos'));
 	}
 
 
