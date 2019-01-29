@@ -81,6 +81,8 @@
     $(function(){
         if(latini != ""){
             initMap(parseFloat(latini) ,parseFloat(lngini));
+            $("#lat1").val(latini);
+            $("#lng1").val(lngini);
         }
         
     })
@@ -151,7 +153,9 @@ function initMap(lat,lng) {
     
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
-        center: ponto
+        center: ponto,
+        mapTypeId: 'satellite',
+        tilt: 0
     });
 
     map.addListener('click', function(event) {
