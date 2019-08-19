@@ -154,7 +154,7 @@ function initMap(lat,lng) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: ponto,
-        mapTypeId: 'satellite',
+        mapTypeId: 'hybrid',
         tilt: 0
     });
 

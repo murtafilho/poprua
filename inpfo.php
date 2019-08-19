@@ -1,5 +1,6 @@
 <?php
-echo "sou eu";
+echo 'sou eu';
 phpinfo();
+
 
 ?>

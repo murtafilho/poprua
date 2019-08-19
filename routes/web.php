@@ -56,7 +56,3 @@ Route::get('converter', 'GeoController@converter')->name('converter');
 Route::get('georreferenciar', 'GeoController@georreferenciar')->name('georreferenciar');
 
 Route::get('markers','Geocontroller@markers')->name('markers');
-
-Route::get('teste',function(){
-  return redirect()->to('http://localhost:8000/pontos?page=7');
-});
