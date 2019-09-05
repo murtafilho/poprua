@@ -1,4 +1,4 @@
-<form class="navbar-form" role="search">
+<form class="navbar-form" role="search" autocomplete="off" >
     <div class="input-group add-on">
         <input class="form-control" placeholder="Logradouro" name="logradouro" id="srch-term" type="text" value="{{$logradouro}}">
     </div>

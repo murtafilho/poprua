@@ -10,7 +10,7 @@
 
 <div class="form-group col-sm-3" required>
     {!! Form::label('ponto_id', 'Ponto*') !!}
-    <select class="form-control" name="ponto_id" id="ponto_id" required>
+    <select class="form-control" name="ponto_id" id="ponto_id" required  autocomplete="off">
         @if(isset($ponto))
             <option value="{{$ponto->id}}">{{$ponto->endereco->logradouro.' '.$ponto->numero.' - '.$ponto->endereco->bairro}}</option>
         @endif
