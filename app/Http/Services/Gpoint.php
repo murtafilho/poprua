@@ -5,7 +5,7 @@ namespace App\Http\Services;
  * 
  * This class encapsulates the methods for representing a geographic point on the earth in three different coordinate systema. Lat/Long, UTM and Lambert Conic Conformal.
  * 
- * Code for datum and UTM conversion was converted from C++ code written by Chuck Gantz (chuck.gantz@globalstar.com) from http://www.gpsy.com/gpsinfo/geotoutm/
+ * Code for datum and UTM conversion was converted from C++ code written by Chuck Gantz (chuck.gantz@globalstar.com) from https://www.gpsy.com/gpsinfo/geotoutm/
  * This code was converted into PHP by Brenor Brophy (brenor@sbcglobal.net) and later refactored for PHP 5.3 by Hans Duedal (hd@onlinecity.dk).
  * 
  * @author chuck.gantz@globalstar.com, brenor@sbcglobal.net, hd@onlinecity.dk
@@ -16,14 +16,14 @@ namespace App\Http\Services;
  * redistribute it and/or modify it under the terms of the GNU General Public
  * License as published by the Free Software Foundation. This license can be read at:
  * 
- * http://www.opensource.org/licenses/gpl-license.php
+ * https://www.opensource.org/licenses/gpl-license.php
  * 
  * This program is distributed in the hope that it will be useful, but WITHOUT 
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
  * 
- * @link http://www.gpsy.com/gpsinfo/geotoutm/
- * @link http://www.phpclasses.org/browse/file/10671.html
+ * @link https://www.gpsy.com/gpsinfo/geotoutm/
+ * @link https://www.phpclasses.org/browse/file/10671.html
  * @link https://gist.github.com/840476
  */
 class gPoint
@@ -31,7 +31,7 @@ class gPoint
 	
 	/**
 	 * Reference ellipsoids derived from Peter H. Dana's website: 
-	 * 	http://www.utexas.edu/depts/grg/gcraft/notes/datum/elist.html
+	 * 	https://www.utexas.edu/depts/grg/gcraft/notes/datum/elist.html
 	 * 	Department of Geography, University of Texas at Austin
 	 * 	Internet: pdana@mail.utexas.edu 3/22/95
 	 * Source:
@@ -68,7 +68,7 @@ class gPoint
 		
 		// Alternative names, added in for easy compatibility by hd@onlinecity.dk
 		"ED50"					=>array	(6378388, 0.00672267), // International Ellipsoid
-		"EUREF89"				=>array	(6378137, 0.00669438), // Max deviation from WGS 84 is 40 cm/km see (in danish) http://www2.kms.dk/C1256AED004E87BA/(AllDocsByDocId)/3382517647F695C9C1256BC700265CE7
+		"EUREF89"				=>array	(6378137, 0.00669438), // Max deviation from WGS 84 is 40 cm/km see (in danish) https://www2.kms.dk/C1256AED004E87BA/(AllDocsByDocId)/3382517647F695C9C1256BC700265CE7
 		"ETRS89"				=>array	(6378137, 0.00669438)  // Same as EUREF89 
 	);
 
@@ -497,7 +497,7 @@ class gPoint
 	 * in meters (because the datum used is in meters) and are relative to the
 	 * falseNorthing/falseEasting coordinate. Which in turn is relative to the
 	 * Lat/Long of origin The formula were obtained from URL:
-	 * http://www.ihsenergy.com/epsg/guid7_2.html.
+	 * https://www.ihsenergy.com/epsg/guid7_2.html.
 	 * Code was written by Brenor Brophy, brenor@sbcglobal.net
 	 * 
 	 */
@@ -537,7 +537,7 @@ class gPoint
 	 * projection. The Northing/Easting parameters are in meters (because the datum
 	 * used is in meters) and are relative to the falseNorthing/falseEasting
 	 * coordinate. Which in turn is relative to the Lat/Long of origin The formula
-	 * were obtained from URL http://www.ihsenergy.com/epsg/guid7_2.html. Code
+	 * were obtained from URL https://www.ihsenergy.com/epsg/guid7_2.html. Code
 	 * was written by Brenor Brophy, brenor@sbcglobal.net
 	 */
 	public function convertLCCtoLL()
@@ -592,7 +592,7 @@ class gPoint
 
 //		Alternative formula supposed to be more accurate for short distances
 //		$dist = 2*asin(sqrt( pow(sin(($lat1-$lat2)/2),2) + cos($lat1)*cos($lat2)*pow(sin(($lon1-$lon2)/2),2)));
-		return ( $dist * 6366710 ); // from http://williams.best.vwh.net/avform.htm#GCF
+		return ( $dist * 6366710 ); // from https://williams.best.vwh.net/avform.htm#GCF
 	}
 	
 	

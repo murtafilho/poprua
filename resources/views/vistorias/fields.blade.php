@@ -47,6 +47,13 @@
 
 <!-- Nivel Complexidade Field -->
 <div class="row"></div>
+
+<!-- conformidade portaria conjunta -->
+<div class="form-group col-sm-2"> 
+    {{ Form::hidden('conformidade', false) }}
+    {{ Form::checkbox('conformidade', true) }}
+    {!! Form::label('conformidade', 'Conformidade portaria conjunta') !!}
+</div>
 <!-- Casal Field -->
 <div class="form-group col-sm-2"> 
     {{ Form::hidden('casal', false) }}

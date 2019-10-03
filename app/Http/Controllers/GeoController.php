@@ -9,6 +9,7 @@ use App\Models\Ponto;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use App\Models\EnderecoBase;
 use Response;
 use App\Http\Services\UTMtoLL;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,13 @@ class GeoController extends AppBaseController
 
     private $ponto;
     private $converter;
+    private $enderecoBase;
 
-    public function __construct(Geo $geo,Ponto $ponto, UTMtoLL $converter)
+    public function __construct(Geo $geo,Ponto $ponto, UTMtoLL $converter, EnderecoBase $enderecoBase)
     {
         $this->ponto = $ponto;
         $this->converter = $converter;
+        $this->enderecoBase = $enderecoBase;
     }
 
 
@@ -33,10 +36,10 @@ class GeoController extends AppBaseController
         $ponto_id = $request->ponto_id;
         $logradouro = $request->logradouro;
         $numero = $request->numero;
-        $enderecamentos = $this->buscar($logradouro,$numero);
+        $enderecamento = $this->buscar($logradouro,$numero);
         $ponto = DB::table('qry_pontos_v2')->where('id','=',$ponto_id)->first();
 
-        return view('geo.index',compact('enderecamentos','ponto_id','ponto','logradouro','numero'));
+        return view('geo.index',compact('enderecamento','ponto_id','ponto','logradouro','numero'));
     }
 
     public function setSearch(Request $request){
@@ -45,8 +48,8 @@ class GeoController extends AppBaseController
         $ponto = DB::table('qry_pontos_v2')->where('id','=',$ponto_id)->first();
         $logradouro = $ponto->logradouro;
         $numero = $ponto->numero;
-        $enderecamentos = $this->buscar($logradouro,$numero);
-        return view('geo.index',compact('enderecamentos','ponto_id','ponto','logradouro','numero'));
+        $enderecamento = $this->buscar($logradouro,$numero);
+        return view('geo.index',compact('enderecamento','ponto_id','ponto','logradouro','numero'));
     }
 
     public function converter(Request $request){
@@ -58,20 +61,25 @@ class GeoController extends AppBaseController
 
     public function buscar($logradouro,$numero){
         $tipo_busca = '0';
-        $data = DB::table('endereco_base');
+        
+        $data = $this->enderecoBase->newQuery();
+    
         if($logradouro){
 			if($tipo_busca == '0'){
-				$data = $data->where('NOME_LOGRA','LIKE','%'.$logradouro.'%');
+				$data->where('NOME_LOGRA','LIKE','%'.$logradouro.'%');
 			}else{
-				$data = $data ->where('NOME_LOGRA','LIKE', $logradouro.'%');
+				$data ->where('NOME_LOGRA','LIKE', $logradouro.'%');
 			}	
 		}
 
 		if($numero){
 			$data = $data ->where('NUMERO_IMO','=',$numero);
-		}
-	
-		return  $data->orderBy('NUMERO_IMO','ASC')->paginate(5);
+        }
+        
+        $data =  $data->orderBy('NUMERO_IMO','ASC')->paginate(5);
+        
+       
+        return $data;
     }
 
     public function georreferenciar(Request $request){

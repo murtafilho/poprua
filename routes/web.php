@@ -45,6 +45,7 @@ Route::resource('categories', 'CategoryController');
 Route::get('saneamento','saneamentoController@executar');
 
 Route::get('migrar/{id}','PontoController@migrar')->name('pontos.migrar');
+
 Route::get('processar_migracao','PontoController@processar_migracao')->name('processar.migracao');
 
 Route::get('geo/{ponto_id}','GeoController@index')->name('geo');
@@ -58,3 +59,5 @@ Route::get('georreferenciar', 'GeoController@georreferenciar')->name('georrefere
 Route::get('markers','Geocontroller@markers')->name('markers');
 
 Route::get('campo','CampoController@index')->name('campo.index');
+
+Route::get('teste','TesteController@index');

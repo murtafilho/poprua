@@ -34,14 +34,14 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>POP RUA </b>SUFIS/GINFI</a>
+        <a href="{{ secure_url('/home') }}"><b>POP RUA </b>SUFIS/GINFI</a>
     </div>
 
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Login</p>
 
-        <form method="post" action="{{ url('/login') }}">
+        <form method="post" action="{{ secure_url('/login') }}">
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -80,8 +80,8 @@
             </div>
         </form>
 
-        <a href="{{ url('/password/reset') }}">Esqueci minha senha</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Registrar novo membro</a>
+        <a href="{{ secure_url('/password/reset') }}">Esqueci minha senha</a><br>
+        <a href="{{ secure_url('/register') }}" class="text-center">Registrar novo membro</a>
 
     </div>
     <!-- /.login-box-body -->

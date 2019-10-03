@@ -28,6 +28,7 @@ class Vistoria extends Model
         'tipo_abordagem_id',
         'nomes_pessoas',
         'quantidade_pessoas',
+        'conformidade',
         'casal',
         'nivel_complexidade',
         'num_reduzido',

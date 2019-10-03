@@ -116,7 +116,7 @@ return [
             |--------------------------------------------------------------------------
             |
             |
-            | Ex: http://prettus.local/?search=lorem&skipCache=true
+            | Ex: https://prettus.local/?search=lorem&skipCache=true
             |
             */
             'skipCache' => 'skipCache'
@@ -181,26 +181,26 @@ return [
         | Params :
         |
         | - search : Searched value
-        |   Ex: http://prettus.local/?search=lorem
+        |   Ex: https://prettus.local/?search=lorem
         |
         | - searchFields : Fields in which research should be carried out
         |   Ex:
-        |    http://prettus.local/?search=lorem&searchFields=name;email
-        |    http://prettus.local/?search=lorem&searchFields=name:like;email
-        |    http://prettus.local/?search=lorem&searchFields=name:like
+        |    https://prettus.local/?search=lorem&searchFields=name;email
+        |    https://prettus.local/?search=lorem&searchFields=name:like;email
+        |    https://prettus.local/?search=lorem&searchFields=name:like
         |
         | - filter : Fields that must be returned to the response object
         |   Ex:
-        |   http://prettus.local/?search=lorem&filter=id,name
+        |   https://prettus.local/?search=lorem&filter=id,name
         |
         | - orderBy : Order By
         |   Ex:
-        |   http://prettus.local/?search=lorem&orderBy=id
+        |   https://prettus.local/?search=lorem&orderBy=id
         |
         | - sortedBy : Sort
         |   Ex:
-        |   http://prettus.local/?search=lorem&orderBy=id&sortedBy=asc
-        |   http://prettus.local/?search=lorem&orderBy=id&sortedBy=desc
+        |   https://prettus.local/?search=lorem&orderBy=id&sortedBy=asc
+        |   https://prettus.local/?search=lorem&orderBy=id&sortedBy=desc
         |
         */
         'params'             => [

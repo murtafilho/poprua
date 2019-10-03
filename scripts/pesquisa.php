@@ -196,7 +196,7 @@ function respostas($r){
 
             }
 
-            $url = "http://sif-piloto.pbh.gov.br/RelatorioVistoriaDetalhada.php?Idn_Insp=$ind_insp";
+            $url = "https://sif-piloto.pbh.gov.br/RelatorioVistoriaDetalhada.php?Idn_Insp=$ind_insp";
 
             echo '<tr>';
             echo "<td><a href='$url' target='_blank'>$ind_insp</a></td>";

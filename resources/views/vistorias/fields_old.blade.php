@@ -47,6 +47,13 @@ $tipo_abordagem,
 <!-- Nivel Complexidade Field -->
 <div class="row"></div>
 <!-- Casal Field -->
+<!-- conformidade portaria conjunta -->
+<div class="form-group col-sm-2"> 
+    {{ Form::hidden('conformidade', false) }}
+    {{ Form::checkbox('conformidade', true) }}
+    {!! Form::label('Conformidade portaria conjunta', 'Casal') !!}
+</div>
+
 <div class="form-group col-sm-2"> 
     {{ Form::hidden('casal', false) }}
     {{ Form::checkbox('casal', true) }}

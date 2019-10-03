@@ -3,7 +3,7 @@
  * Licensed under MIT
  *
  * Copyright (c) 2016 yjteam
- * http://yjteam.co.kr
+ * https://yjteam.co.kr
  *
  * GitHub Repositories
  * https://github.com/yjseo29/highlight.js

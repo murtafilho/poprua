@@ -34,25 +34,25 @@
 
     </thead>
     <tbody>
-    @foreach($enderecamentos as $enderecamento)
+    @foreach($enderecamento as $data)
         <tr>
-            <td>{!! $enderecamento->IDEND !!}</td>
-            <td>{!! $enderecamento->ID_LOGRADO !!}</td>
-            <td>{!! $enderecamento->SIGLA_TIPO !!}</td>
-            <td>{!! $enderecamento->NOME_LOGRA !!}</td>
-            <td>{!! $enderecamento->NUMERO_IMO !!}</td>
-            <td>{!! $enderecamento->LETRA_IMOV !!}</td>
-            <td>{!! $enderecamento->NOME_BAIRR !!}</td>
-            <td>{!! $enderecamento->NOME_REGIO !!}</td>
-            <td>{!! $enderecamento->CEP !!}</td>
-            <td>{!! $enderecamento->LESTE !!}</td>
-            <td>{!! $enderecamento->NORTE !!}</td>
+            <td>{!! $data->IDEND !!}</td>
+            <td>{!! $data->ID_LOGRADO !!}</td>
+            <td>{!! $data->SIGLA_TIPO !!}</td>
+            <td>{!! $data->NOME_LOGRA !!}</td>
+            <td>{!! $data->NUMERO_IMO !!}</td>
+            <td>{!! $data->LETRA_IMOV !!}</td>
+            <td>{!! $data->NOME_BAIRR !!}</td>
+            <td>{!! $data->NOME_REGIO !!}</td>
+            <td>{!! $data->CEP !!}</td>
+            <td>{!! $data->LESTE !!}</td>
+            <td>{!! $data->NORTE !!}</td>
         </tr>
     @endforeach
     </tbody>
 </table>
 
-{!! $enderecamentos->appends(Request::except('page'))->links() !!}
+{!! $enderecamento->appends(Request::except('page'))->links() !!}
 
 <div class="row">
   <div class="">
@@ -76,9 +76,11 @@
 <div id="map"></map>
 @section('scripts')
 <script>
-    var latini = {{$ponto->lat}} + "";
-    var lngini = {{$ponto->lng}} + "";   
+ 
     $(function(){
+        var latini = {{$ponto->lat}} + "";
+        var lngini = {{$ponto->lng}} + "";  
+
         if(latini != ""){
             initMap(parseFloat(latini) ,parseFloat(lngini));
             $("#lat1").val(latini);

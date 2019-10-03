@@ -94,14 +94,10 @@ class VistoriaController extends AppBaseController
         $tipo_abrigo_desmontado = $this->tipo_abrigo_desmontado;
         $encaminhamentos = $this->encaminhamentos;
 
-
-
         $vistoria = $this->vistoriaRepository->findWithoutFail($id);
         $vistoria->data_abordagem = $this->toBR($vistoria->data_abordagem);
         $ponto_id = $vistoria->ponto_id;
         $ponto = $this->ponto->find($ponto_id);
-
-
 
         if (empty($vistoria)) {
             Flash::error('Vistoria não encontrada');
@@ -109,7 +105,7 @@ class VistoriaController extends AppBaseController
             return redirect(route('vistorias.index'));
         }
         
-        return view('vistorias.edit',compact('vistoria','ponto','ponto_concat','resultados_acoes','tipo_abordagem','tipo_abrigo_desmontado','encaminhamentos'));
+        return view('vistorias.edit',compact('vistoria','ponto','resultados_acoes','tipo_abordagem','tipo_abrigo_desmontado','encaminhamentos'));
     }
 
 
